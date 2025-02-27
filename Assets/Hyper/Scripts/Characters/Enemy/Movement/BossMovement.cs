@@ -13,12 +13,12 @@ public class BossMovement : EnemyMovementBase
     protected override void Update()
     {
         if (attackSystem == null){
-            Move();
+            MoveToPlayer();
             return;
         }
         if (!attackSystem.IsAttacking)
         {
-            Move();
+            MoveToPlayer();
             myAnimator.SetInteger("AnimState", 1);
             myAnimator.SetBool("Grounded", true);
         }
@@ -30,8 +30,8 @@ public class BossMovement : EnemyMovementBase
 
     protected override void StopMoving()
     {
-        myRigidbody.velocity = Vector2.zero;
-        myAnimator.SetInteger("AnimState", 0);
-        myAnimator.SetBool("Grounded", false);
+        // myRigidbody.velocity = Vector2.zero;
+        // myAnimator.SetInteger("AnimState", 0);
+        // myAnimator.SetBool("Grounded", false);
     }
 }

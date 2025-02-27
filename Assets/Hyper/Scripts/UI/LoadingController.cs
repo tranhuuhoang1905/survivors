@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class LoadingController : MonoBehaviour
 {
     public static LoadingController Instance { get; private set; }
+    [SerializeField] private AudioClip LoadingScenebackgroundMusic; // Nhạc nền mặc định
     [SerializeField] private Slider progressBar;
 
     private void Awake()
@@ -18,6 +19,10 @@ public class LoadingController : MonoBehaviour
 
     private void Start()
     {
+         if (LoadingScenebackgroundMusic != null)
+        {
+            AudioManager.Instance.PlayMusic(LoadingScenebackgroundMusic);
+        }
         StartCoroutine(GameController.Instance.LoadTargetScene()); // 🔥 Bắt đầu load scene cần thiết
     }
 

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
     private string sceneToLoad; // Biến lưu tên scene cần load
     private int currentLevelIndex = 0;
+    
     void Awake()
     {
         

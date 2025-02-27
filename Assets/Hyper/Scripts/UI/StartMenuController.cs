@@ -7,6 +7,15 @@ using UnityEditor; // Thêm thư viện UnityEditor để dùng ExitPlaymode()
 public class StartMenuManager : MonoBehaviour
 {
     
+    [SerializeField] private AudioClip StartScenebackgroundMusic; // Nhạc nền mặc định
+    void Start()
+    {
+        if (StartScenebackgroundMusic != null)
+        {
+            AudioManager.Instance.PlayMusic(StartScenebackgroundMusic);
+        }
+    }
+            
     public void OnStartButtonPressed()
     {
         SceneSignal.LoadScene("BattleSelectScene");

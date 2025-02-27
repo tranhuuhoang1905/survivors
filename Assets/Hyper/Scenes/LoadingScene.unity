@@ -773,6 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1761b6e2105b845be6137fed0fe4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadingScenebackgroundMusic: {fileID: 8300000, guid: 7990405559676af44a57baecd5f54368, type: 3}
   progressBar: {fileID: 632786231}
 --- !u!4 &2014328252
 Transform:

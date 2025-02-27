@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,113 +6,93 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
-    [SerializeField] Vector2 deathKick = new Vector2 (10f, 10f);
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform gun;
-    
+    [SerializeField] Vector2 deathKick = new Vector2(10f, 10f);
+    private SpriteRenderer spriteRenderer;
+
+
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     Animator myAnimator;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     float gravityScaleAtStart;
-
     bool isAlive = true;
+    public bool IsAlive => isAlive; // Trả về trạng thái sống
 
-    bool IsRunning = true;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         gravityScaleAtStart = myRigidbody.gravityScale;
-        InvokeRepeating("AutoFire", 0.5f, 1f);
     }
 
     void Update()
     {
-        if (!isAlive) { return; }
+        if (!isAlive) return;
         Run();
         FlipSprite();
         ClimbLadder();
         Die();
     }
 
-    void OnFire(InputValue value)
-    {
-        if (!isAlive) { return; }
-        Instantiate(bullet, gun.position, transform.rotation);
-    }
-    void AutoFire()
-    {
-        if (!isAlive) { return; }
-        myAnimator.SetTrigger("IsActack");
-        
-        // IsRunning = false;
-        Invoke("InstantiateBullet", 0.2f); 
-    }
-    void InstantiateBullet() // This function is called after the delay
-    {
-        
-        IsRunning = true;
-        Instantiate(bullet, gun.position, transform.rotation);
-    }
-    
     void OnMove(InputValue value)
     {
-        if (!isAlive) { return; }
+        if (!isAlive) return;
         moveInput = value.Get<Vector2>();
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) return;
     }
 
     void OnJump(InputValue value)
     {
-        if (!isAlive) { return; }
-        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return;}
-        
-        if(value.isPressed)
+        if (!isAlive) return;
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) return;
+
+        if (value.isPressed)
         {
-            // do stuff
-            myRigidbody.velocity += new Vector2 (0f, jumpSpeed);
+            myRigidbody.velocity += new Vector2(0f, jumpSpeed);
         }
     }
 
     void Run()
     {
+        // Lấy input di chuyển
+        Vector3 moveDirection = new Vector3(moveInput.x, moveInput.y, 0);
 
-        Vector2 playerVelocity = new Vector2 ( 0, 0);
-        if (IsRunning){
-            playerVelocity = new Vector2 (moveInput.x * runSpeed, myRigidbody.velocity.y);
-        
+        // Chuẩn hóa hướng di chuyển để tránh tốc độ lớn hơn 5px/s khi di chuyển chéo
+        if (moveDirection.magnitude > 1)
+        {
+            moveDirection.Normalize();
         }
-        myRigidbody.velocity = playerVelocity;
 
-        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
+        // Di chuyển với tốc độ 5px/s
+        transform.Translate(moveDirection * runSpeed * Time.deltaTime);
+
+        bool playerHasHorizontalSpeed = moveInput.x !=0 || moveInput.y != 0;
         myAnimator.SetBool("IsRunning", playerHasHorizontalSpeed);
-        
-
     }
 
     void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-
+        bool playerHasHorizontalSpeed = Mathf.Abs(moveInput.x) > Mathf.Epsilon;
         if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.velocity.x), 1f);
+            spriteRenderer.flipX = moveInput.x < 0; // Flip chỉ sprite
         }
     }
 
     void ClimbLadder()
     {
-        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) 
-        { 
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
             myRigidbody.gravityScale = gravityScaleAtStart;
             myAnimator.SetBool("isClimbing", false);
             return;
         }
-        
-        Vector2 climbVelocity = new Vector2 (myRigidbody.velocity.x, moveInput.y * climbSpeed);
+
+        Vector2 climbVelocity = new Vector2(myRigidbody.velocity.x, moveInput.y * climbSpeed);
         myRigidbody.velocity = climbVelocity;
         myRigidbody.gravityScale = 0f;
 
@@ -132,5 +110,4 @@ public class PlayerMovement : MonoBehaviour
             // FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
-
 }

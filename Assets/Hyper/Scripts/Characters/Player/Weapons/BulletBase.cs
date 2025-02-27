@@ -1,39 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BulletBase : MonoBehaviour
 {
     [SerializeField] protected float bulletSpeed = 10f;
-    protected Rigidbody2D myRigidbody;
-    protected PlayerMovement player;
-    protected float xSpeed;
-    protected int damage = 1;
+    [SerializeField] protected int damage = 1;
 
-    void Start()
+    private BulletSoundManager soundManager;
+    private BulletMovement movement;
+
+    public void Initialize(BulletSoundManager soundManager, BulletMovement movement)
     {
-        myRigidbody = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<PlayerMovement>();
-        xSpeed = player.transform.localScale.x * bulletSpeed;
-        transform.localScale = new Vector2((Mathf.Sign(xSpeed)), 1f);
-        Initialize();
-    }
+        this.soundManager = soundManager;
+        this.movement = movement;
 
-    protected virtual void Initialize()
-    {
-        // Phương thức này có thể được ghi đè bởi các lớp con để khởi tạo các thuộc tính riêng
+        if (soundManager != null)
+        {
+            soundManager.PlayShootSound();
+        }
+        movement.Initialize(bulletSpeed);
     }
-
-    void Update()
-    {
-        Move();
-    }
-
-    protected abstract void Move();
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (!other.gameObject.CompareTag("Player"))
         {
             HandleCollision(other);
             Destroy(gameObject);
@@ -42,12 +31,13 @@ public abstract class BulletBase : MonoBehaviour
 
     protected virtual void HandleCollision(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>(); 
+            EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage); 
+                soundManager?.PlayHitSound();
+                enemy.TakeDamage(damage);
             }
         }
     }

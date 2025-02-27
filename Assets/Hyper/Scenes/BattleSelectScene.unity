@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f61fa98ce261574e9ced0fb6084403c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleSelectScenebackgroundMusic: {fileID: 8300000, guid: 6551f67aec03adb4b976415d77261ace, type: 3}
 --- !u!1 &1341575103
 GameObject:
   m_ObjectHideFlags: 0

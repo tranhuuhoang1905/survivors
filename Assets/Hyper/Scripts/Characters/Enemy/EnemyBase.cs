@@ -6,11 +6,11 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float health, maxHealth = 3f;
     [SerializeField] protected int score = 1;
-    [SerializeField] protected Headbar healthBar;
+    protected SliderBar healthBar;
 
     protected virtual void Awake()
     {
-        healthBar = GetComponentInChildren<Headbar>();
+        healthBar = GetComponentInChildren<SliderBar>();
     }
     protected virtual void Initialize()
     {
@@ -20,7 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-        healthBar.UpdateHealthBar(health, maxHealth);
+        healthBar.UpdateSliderBar(health, maxHealth);
         if (health <= 0)
         {
             ScoreSignal.RaiseScore(score); // 🔥 Gửi Signal khi quái chết

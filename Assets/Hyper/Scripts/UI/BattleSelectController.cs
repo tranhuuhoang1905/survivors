@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class BattleSelectController : MonoBehaviour
 {
+    [SerializeField] private AudioClip BattleSelectScenebackgroundMusic; // Nhạc nền mặc định
+    void Start()
+    {
+        if (BattleSelectScenebackgroundMusic != null)
+        {
+            AudioManager.Instance.PlayMusic(BattleSelectScenebackgroundMusic);
+        }
+    }
     public void OnBattleSelectButtonPressed(int level)
     {
         GameManager.Instance.SetLevel(level); // nên tạo gameManager hơn, nhưng hiện tại gamemanager chưa chứa bất cứ thứ gì nên tạm vậy
