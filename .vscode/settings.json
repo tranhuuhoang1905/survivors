@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "hyper.sln"
+    "dotnet.defaultSolution": "survivors.sln"
 }

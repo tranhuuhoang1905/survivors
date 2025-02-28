@@ -1,16 +1,12 @@
 using UnityEngine;
 public class ScoreSignal
 {
-    public static event System.Action<int> OnAddScore;
-    public static event System.Action<int> OnScoreUpdated;
+    public static event System.Action<ScoreData> OnAddScore;
 
-    public static void RaiseScore(int scoreAmount)
+    public static void RaiseScore(ScoreData scoreData)
     {
-        OnAddScore?.Invoke(scoreAmount);
+        OnAddScore?.Invoke(scoreData);
     }
 
-    public static void RaiseScoreUpdated(int newScore)
-    {
-        OnScoreUpdated?.Invoke(newScore);
-    }
+    
 }

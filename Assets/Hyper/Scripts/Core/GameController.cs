@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(sceneName);
         }
     }
+    
 
     public IEnumerator LoadTargetScene()
     {
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour
             {
                 yield return new WaitForSeconds(1f); // Giả lập thời gian chờ
                 operation.allowSceneActivation = true; // 🔥 Kích hoạt scene mới
+                yield return new WaitForSeconds(0.1f);
             }
 
             yield return null;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     // [SerializeField] AudioClip coinPickupSFX;
+    [SerializeField] int scoreType = 1;
     [SerializeField] int pointsForCoinPickup = 5;
     bool wasCollected = false;
 
@@ -13,7 +14,8 @@ public class CoinPickup : MonoBehaviour
         if (other.tag == "Player" && !wasCollected)
         {
             wasCollected = true;
-            ScoreSignal.RaiseScore(pointsForCoinPickup); // 🔥 Gửi Signal khi quái chết
+            ScoreData scoreData = new ScoreData(scoreType, pointsForCoinPickup);
+            ScoreSignal.RaiseScore(scoreData); // 🔥 Gửi Signal khi quái chết
             // AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
             gameObject.SetActive(false);
             Destroy(gameObject);

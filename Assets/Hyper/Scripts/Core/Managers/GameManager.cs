@@ -8,9 +8,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public ScoreSignal scoreSignal;
     private int currentLevelIndex = 0;
-    [SerializeField] int score = 0;
-    [SerializeField] int exp = 0;
+    private int playerType = 1;
+    private int score = 0;
+    private int exp = 0;
+    private int maxExp = 10;
+    private int playerLevel = 1;
 
     void Awake()
     {
@@ -21,37 +25,63 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        ScoreSignal.OnAddScore += AddToScore; // Đăng ký sự kiện
+        SceneSignal.OnSceneLoaded += RefreshUI;
     }
 
     void Start() 
     {
-        ScoreSignal.RaiseScoreUpdated(score);
+        Debug.Log($"check Start RaiseScoreUpdated score: {score}");
+        SceneSignal.RaiseScoreUpdated(score);
     }
-
-    void OnEnable()
+    void OnDestroy()
     {
-        ScoreSignal.OnAddScore += AddToScore; // Đăng ký sự kiện
+        // Unsubscribe when the object is destroyed
+        ScoreSignal.OnAddScore -= AddToScore;
+        SceneSignal.OnSceneLoaded -= RefreshUI;
     }
 
-    void OnDisable()
+    public void SetLevel(int newLevel)
     {
-        ScoreSignal.OnAddScore -= AddToScore; // Hủy đăng ký sự kiện
+        playerLevel = newLevel;
     }
 
-
-    public void SetLevel(int level)
-    {
-        currentLevelIndex = level;
-    }
     public int GetLevel()
     {
-        return  currentLevelIndex;
+        return  playerLevel;
     }
 
-    public void AddToScore(int pointsToAdd)
+    public void AddToScore(ScoreData scoreData)
     {
-        score += pointsToAdd;
-        ScoreSignal.RaiseScoreUpdated(score);
+        switch (scoreData.scoreType)
+        {
+            case 1:
+                score += scoreData.value; // Cộng vào điểm số
+                
+                Debug.Log($"check AddToScore RaiseScoreUpdated score: {score}");
+                SceneSignal.RaiseScoreUpdated(score);
+                break;
+            case 2:
+                exp += scoreData.value; // Cộng vào kinh nghiệm
+                
+                Debug.Log($"check AddToScore RaiseScoreUpdated exp: {exp}");
+                Debug.Log($"check AddToScore RaiseScoreUpdated maxExp: {maxExp}");
+                SceneSignal.RaiseExpUpdated(exp,maxExp);
+                break;
+            // case 3:
+            //     playerLevel += scoreData.value; // Cộng vào cấp độ
+            //     break;
+            default:
+                Debug.LogWarning("Unknown scoreType: " + scoreData.scoreType);
+                break;
+        }
+    }
+    public void RefreshUI()
+    {
+        
+        Debug.Log($"check GameManager RefreshUI: {score}");
+        SceneSignal.RaiseScoreUpdated(score);
+        SceneSignal.RaiseExpUpdated(exp,maxExp);
     }
     
 }
