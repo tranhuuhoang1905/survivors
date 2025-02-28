@@ -273,6 +273,7 @@ MonoBehaviour:
   health: 3
   maxHealth: 3
   score: 1
+  scoreType: 1
 --- !u!114 &3236816730533655419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f04d4a0dc35bbb47bc269804d45e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -1
+  moveSpeed: 1
 --- !u!1001 &7518356020246426897
 PrefabInstance:
   m_ObjectHideFlags: 0

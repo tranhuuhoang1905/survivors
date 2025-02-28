@@ -15,10 +15,26 @@ PrefabInstance:
     - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6929924221510541977, guid: 19e07f9d107e445408633f50457d456e, type: 3}
+      objectReference: {fileID: 1040932059, guid: 640ae265351b17240b9632082f83caac, type: 3}
+    - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: m_Color.b
+      value: 0.33285868
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: m_Color.g
+      value: 0.33822238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
     - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: scoreType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: pointsForCoinPickup
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6333207138129255173, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 7700504737455407023, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f256d94ad78633f4da3695977645607e, type: 2}
+      objectReference: {fileID: 9100000, guid: 1b18e071ac2db754d92cfc0c39ceb3d6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

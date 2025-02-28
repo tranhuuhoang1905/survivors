@@ -24,8 +24,8 @@ public abstract class EnemyBase : MonoBehaviour
         healthBar.UpdateSliderBar(health, maxHealth);
         if (health <= 0)
         {
-            ScoreData scoreData = new ScoreData(scoreType, score);
-            ScoreSignal.RaiseScore(scoreData); // 🔥 Gửi Signal khi quái chết
+            ScoreEntry scoreEntry = new ScoreEntry(scoreType, score);
+            ScoreSignal.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
             Die();
         }
     }

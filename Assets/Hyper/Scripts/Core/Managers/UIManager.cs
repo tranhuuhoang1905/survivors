@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     
     public static UIManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI levelText;
     
     [SerializeField] private Slider slider;
     void Awake()
@@ -39,27 +40,19 @@ public class UIManager : MonoBehaviour
     {
         scoreText.text = newScore.ToString();
     }
-    public void UpdateExpBarUI(int currentValue, int maxValue)
+
+    public void UpdateExpBarUI(int currentValue, int maxValue, int newLevel)
     {
-        
-                Debug.Log($"check UpdateExpBarUI currentValue exp: {currentValue}");
-                Debug.Log($"check UpdateExpBarUI currentValue maxExp: {maxValue}");
+        levelText.text = newLevel.ToString();
         if (maxValue == null || maxValue == 0)
         {
-            Debug.Log("check UpdateExpBarUI currentValue exp: true");
             slider.value = 0f;
         }
         else
         {
-            
             float fExpPercentage = (float)currentValue / maxValue; // Ép kiểu float
             int iExpPercentage = currentValue / maxValue;
-            Debug.Log($"check UpdateExpBarUI currentValue fExpPercentage: false{fExpPercentage}");
-            Debug.Log($"check UpdateExpBarUI currentValue iExpPercentage: false{iExpPercentage}");
-
             slider.value = fExpPercentage;
         }
     }
-
-
 }

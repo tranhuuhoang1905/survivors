@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7700504737455407023}
   - component: {fileID: 3821729072381390836}
   - component: {fileID: 5533667702098347973}
-  m_Layer: 0
+  - component: {fileID: 8618045590341194745}
+  m_Layer: 12
   m_Name: ItemBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +143,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.33
+  m_Radius: 5
 --- !u!114 &5533667702098347973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +158,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreType: 1
   pointsForCoinPickup: 5
+  moveSpeed: 8
+--- !u!58 &8618045590341194745
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2826045216167906465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.31

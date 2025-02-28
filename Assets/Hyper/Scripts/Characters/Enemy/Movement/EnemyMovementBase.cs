@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovementBase : MonoBehaviour
 {
-    [SerializeField] protected float moveSpeed = -1f;
+    [SerializeField] protected float moveSpeed = 1f;
     protected Animator myAnimator;
     private SpriteRenderer spriteRenderer;
     protected bool isAttacking = false;
@@ -29,7 +29,7 @@ public class EnemyMovementBase : MonoBehaviour
 
     protected virtual void MoveToPlayer()
     {
-        Vector2 direction = (transform.position - player.position).normalized;
+        Vector2 direction = (player.position - transform.position ).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         FlipEnemyFacing(direction.x);
     }
