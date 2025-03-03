@@ -9,10 +9,10 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
     private string sceneToLoad; // Biến lưu tên scene cần load
+    public SceneSignal sceneSignal;
     
     void Awake()
     {
-        
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -23,12 +23,13 @@ public class GameController : MonoBehaviour
     }
     void OnEnable()
     {
-        SceneSignal.OnLoadScene += LoadScene;
+        
+        sceneSignal.OnLoadScene.AddListener(LoadScene);
     }
 
     void OnDisable()
     {
-        SceneSignal.OnLoadScene -= LoadScene;
+        sceneSignal.OnLoadScene.RemoveListener(LoadScene);
     }
 
     void Start() 

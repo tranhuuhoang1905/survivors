@@ -25,14 +25,14 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        SceneSignal.OnScoreUpdated += UpdateScoreUI;
-        SceneSignal.OnExpUpdated += UpdateExpBarUI;
+        ScoreEvent.OnScoreUpdated += UpdateScoreUI;
+        ScoreEvent.OnExpUpdated += UpdateExpBarUI;
     }
 
     void OnDisable()
     {
-        SceneSignal.OnScoreUpdated -= UpdateScoreUI;
-        SceneSignal.OnExpUpdated -= UpdateExpBarUI;
+        ScoreEvent.OnScoreUpdated -= UpdateScoreUI;
+        ScoreEvent.OnExpUpdated -= UpdateExpBarUI;
     }
 
     private void UpdateScoreUI(int newScore)

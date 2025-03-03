@@ -8,6 +8,9 @@ public class StartMenuManager : MonoBehaviour
 {
     
     [SerializeField] private AudioClip StartScenebackgroundMusic; // Nhạc nền mặc định
+    public SceneSignal sceneSignal;
+
+
     void Start()
     {
         if (StartScenebackgroundMusic != null)
@@ -18,7 +21,8 @@ public class StartMenuManager : MonoBehaviour
             
     public void OnStartButtonPressed()
     {
-        SceneSignal.LoadScene("BattleSelectScene");
+        sceneSignal.LoadScene("BattleSelectScene");
+        
     }
 
     public void OnExitButtonPressed()

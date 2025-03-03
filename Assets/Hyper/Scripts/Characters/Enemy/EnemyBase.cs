@@ -26,7 +26,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (health <= 0)
         {
             ScoreEntry scoreEntry = new ScoreEntry(scoreType, score);
-            ScoreSignal.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
+            ScoreEvent.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
             Die();
         }
     }

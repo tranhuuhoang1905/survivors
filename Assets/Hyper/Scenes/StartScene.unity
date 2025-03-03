@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartScenebackgroundMusic: {fileID: 8300000, guid: 821978077663ffe46b117b9cb461e44c, type: 3}
+  sceneSignal: {fileID: 11400000, guid: 6743d0a61821b164089a1cbbd8f3cba4, type: 2}
 --- !u!4 &354076367
 Transform:
   m_ObjectHideFlags: 0
@@ -1022,6 +1023,10 @@ PrefabInstance:
       value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 3972708337257296622, guid: 0468c4b36babbf84f870b6605b0bc14f, type: 3}
+      propertyPath: sceneSignal
+      value: 
+      objectReference: {fileID: 11400000, guid: 6743d0a61821b164089a1cbbd8f3cba4, type: 2}
+    - target: {fileID: 3972708337257296622, guid: 0468c4b36babbf84f870b6605b0bc14f, type: 3}
       propertyPath: StartScenebackgroundMusic
       value: 
       objectReference: {fileID: 8300000, guid: 821978077663ffe46b117b9cb461e44c, type: 3}
@@ -1216,6 +1221,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7282069234050756901, guid: 236802cc4b71d63489a64a2a8e3ad942, type: 3}
+      propertyPath: sceneSignal
+      value: 
+      objectReference: {fileID: 11400000, guid: 6743d0a61821b164089a1cbbd8f3cba4, type: 2}
     - target: {fileID: 9137364661468777722, guid: 236802cc4b71d63489a64a2a8e3ad942, type: 3}
       propertyPath: m_Name
       value: GameManager

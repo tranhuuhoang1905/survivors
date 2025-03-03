@@ -8,15 +8,17 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public ScoreSignal scoreSignal;
+    public ScoreEvent ScoreEvent;
     private int playerType = 1;
     private int score = 0;
     
     protected SliderBar healthBar;
+    public SceneSignal sceneSignal;
 
 
     void Awake()
     {
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,8 +26,10 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        ScoreSignal.OnAddScore += AddToScore; // Đăng ký sự kiện
-        SceneSignal.OnSceneLoaded += RefreshUI;
+        ScoreEvent.OnAddScore += AddToScore; // Đăng ký sự kiện
+        
+        sceneSignal.OnSceneLoaded.AddListener(RefreshUI);
+        
     }
 
     void Start() 
@@ -35,8 +39,8 @@ public class GameManager : MonoBehaviour
     void OnDestroy()
     {
         // Unsubscribe when the object is destroyed
-        ScoreSignal.OnAddScore -= AddToScore;
-        SceneSignal.OnSceneLoaded -= RefreshUI;
+        ScoreEvent.OnAddScore -= AddToScore;
+        sceneSignal.OnSceneLoaded.RemoveListener(RefreshUI);
     }
 
 
@@ -46,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 score += scoreEntry.value; // Cộng vào điểm số
-                SceneSignal.RaiseScoreUpdated(score);
+                ScoreEvent.RaiseScoreUpdated(score);
                 break;
             case 2:
                 if (Character.Instance != null)
@@ -67,11 +71,14 @@ public class GameManager : MonoBehaviour
 
     public void RefreshUI()
     {
-        SceneSignal.RaiseScoreUpdated(score);
-        int exp = Character.Instance.exp;
-        int level = Character.Instance.level;
-        int maxExp = Character.Instance.GetMaxExp();
-        SceneSignal.RaiseExpUpdated(exp, maxExp, level);
+        ScoreEvent.RaiseScoreUpdated(score);
+        if (Character.Instance != null)
+        {
+            int exp = Character.Instance.exp;
+            int level = Character.Instance.level;
+            int maxExp = Character.Instance.GetMaxExp();
+            ScoreEvent.RaiseExpUpdated(exp, maxExp, level);
+        }
     }
     
 }

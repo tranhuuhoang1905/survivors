@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     [SerializeField] private AudioClip BattleScenebackgroundMusic; // Nhạc nền mặc định
+    public SceneSignal sceneSignal;
     void Start()
     {
 
@@ -12,8 +13,9 @@ public class BattleController : MonoBehaviour
         {
             AudioManager.Instance.PlayMusic(BattleScenebackgroundMusic);
         }
-        SceneSignal.SceneLoaded();
+        sceneSignal.SceneLoaded();
     }
+
 
     // Update is called once per frame
     void Update()

@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7282069234050756901, guid: 236802cc4b71d63489a64a2a8e3ad942, type: 3}
+      propertyPath: sceneSignal
+      value: 
+      objectReference: {fileID: 11400000, guid: 6743d0a61821b164089a1cbbd8f3cba4, type: 2}
     - target: {fileID: 9137364661468777722, guid: 236802cc4b71d63489a64a2a8e3ad942, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1053,6 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleSelectScenebackgroundMusic: {fileID: 8300000, guid: 6551f67aec03adb4b976415d77261ace, type: 3}
+  sceneSignal: {fileID: 11400000, guid: 6743d0a61821b164089a1cbbd8f3cba4, type: 2}
 --- !u!1 &1341575103
 GameObject:
   m_ObjectHideFlags: 0

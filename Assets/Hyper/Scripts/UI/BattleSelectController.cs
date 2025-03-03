@@ -4,6 +4,10 @@ using UnityEngine;
 public class BattleSelectController : MonoBehaviour
 {
     [SerializeField] private AudioClip BattleSelectScenebackgroundMusic; // Nhạc nền mặc định
+    public SceneSignal sceneSignal;
+
+
+
     void Start()
     {
         if (BattleSelectScenebackgroundMusic != null)
@@ -13,11 +17,12 @@ public class BattleSelectController : MonoBehaviour
     }
     public void OnBattleSelectButtonPressed(int level)
     {
-        SceneSignal.LoadScene("BattleScene");
+        sceneSignal.LoadScene("BattleScene");
     }
     
     public void OnExitButtonPressed()
     {
-        SceneSignal.LoadScene("StartScene");        // 🔥 Chuyển sang màn hình Loading trước khi vào game
+        sceneSignal.LoadScene("StartScene");        // 🔥 Chuyển sang màn hình Loading trước khi vào game
+        
     }
 }

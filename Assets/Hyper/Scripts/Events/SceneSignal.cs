@@ -1,30 +1,20 @@
 using UnityEngine;
-public class SceneSignal
-{
-    
-    public static event System.Action<string> OnLoadScene;
-    public static event System.Action OnSceneLoaded;
-    public static event System.Action<int, int, int> OnExpUpdated;
-    public static event System.Action<int> OnScoreUpdated;
+using UnityEngine.Events;
 
-    public static void LoadScene(string sceneName)
+[CreateAssetMenu(menuName = "Signals/SceneSignal")]
+public class SceneSignal : ScriptableObject
+{
+    public UnityEvent<string> OnLoadScene;
+    public UnityEvent OnSceneLoaded;
+
+    public void LoadScene(string sceneName)
     {
         OnLoadScene?.Invoke(sceneName);
     }
 
-    public static void SceneLoaded()
+    public void SceneLoaded()
     {
-        Debug.Log("check SceneSignal SceneLoaded");
+        Debug.Log("SceneSignalSO: Scene đã tải xong");
         OnSceneLoaded?.Invoke();
-    }
-    
-    public static void RaiseScoreUpdated(int newScore)
-    {
-        OnScoreUpdated?.Invoke(newScore);
-    }
-
-    public static void RaiseExpUpdated(int newScore,int maxScore,int newLevel)
-    {
-        OnExpUpdated?.Invoke(newScore,maxScore,newLevel);
     }
 }

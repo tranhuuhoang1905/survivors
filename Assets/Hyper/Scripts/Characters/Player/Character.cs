@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
         }
         exp = Mathf.Min(exp, GetMaxExp());
 
-        SceneSignal.RaiseExpUpdated(exp, GetMaxExp(), level);
+        ScoreEvent.RaiseExpUpdated(exp, GetMaxExp(), level);
     }
 
     public void AddHealth(int amount)

@@ -12,12 +12,21 @@ public class CoinPickup : MonoBehaviour
     protected Transform player;
     [SerializeField] protected float moveSpeed = 5f;
     [SerializeField] private AudioClip pickup;
+    Rigidbody2D myRigidbody;
 
+    void Start()
+    {
+        myRigidbody = GetComponent<Rigidbody2D>();
+    }
     void FixedUpdate()
     {
         if (isMovingToPlayer)
         {
             MoveToPlayer();
+        }
+        if (player && Vector2.Distance(transform.position, player.position) < 0.5f)
+        {
+            CollectItem();
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,13 +38,14 @@ public class CoinPickup : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            CollectItem();
-        }
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+    //     {
+    //         CollectItem();
+    //     }
+    // }
+    
     private void MoveToPlayer()
     {
         Vector2 direction = (player.position - transform.position ).normalized;
@@ -45,7 +55,7 @@ public class CoinPickup : MonoBehaviour
     {
         wasCollected = true;
         ScoreEntry scoreEntry = new ScoreEntry(scoreType, pointsForCoinPickup);
-        ScoreSignal.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
+        ScoreEvent.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
         // AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
         gameObject.SetActive(false);
         
