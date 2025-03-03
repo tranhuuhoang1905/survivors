@@ -7,6 +7,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float health, maxHealth = 3f;
     [SerializeField] protected int score = 1;
     [SerializeField] int scoreType = 1;
+    [SerializeField] GameObject itemBonus;
     protected SliderBar healthBar;
 
     protected virtual void Awake()
@@ -42,5 +43,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
+        
+        GameObject newEnemy = Instantiate(itemBonus, transform.position, transform.rotation);
     }
 }

@@ -37,8 +37,14 @@ public abstract class BulletBase : MonoBehaviour
             if (enemy != null)
             {
                 soundManager?.PlayHitSound();
+                Debug.Log($"Damage bullet {damage}");
                 enemy.TakeDamage(damage);
             }
         }
+    }
+
+    public virtual void SetDamage(int newDamage)
+    {
+        damage = newDamage;
     }
 }

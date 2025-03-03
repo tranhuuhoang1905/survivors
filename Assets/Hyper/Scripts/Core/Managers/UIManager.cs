@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -44,7 +43,7 @@ public class UIManager : MonoBehaviour
     public void UpdateExpBarUI(int currentValue, int maxValue, int newLevel)
     {
         levelText.text = newLevel.ToString();
-        if (maxValue == null || maxValue == 0)
+        if (maxValue == 0)
         {
             slider.value = 0f;
         }

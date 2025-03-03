@@ -7,15 +7,22 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] Transform gun;
     [SerializeField] float SpantSpeed = 1f;
     public Transform bulletPool;
+    private Character playerCharacter;
     Animator myAnimator;
     
     PlayerMovement playerMovement;
+
+    void Awake()
+    {
+        StatsRefresh.OnRefresh += SpantSpeedRefresh; // Đăng ký sự kiện
+    }
+
 
     void Start()
     {
         myAnimator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-
+        playerCharacter = GetComponent<Character>();
         // Nếu bulletPool chưa được gán, tạo mới một GameObject "BulletPool"
         if (bulletPool == null)
         {
@@ -24,6 +31,11 @@ public class PlayerFire : MonoBehaviour
         }
         
         InvokeRepeating("AutoFire", 1f, SpantSpeed);
+    }
+
+    void OnDestroy()
+    {
+        StatsRefresh.OnRefresh -= SpantSpeedRefresh; // Đăng ký sự kiện
     }
 
     // void OnFire(InputValue value)
@@ -47,25 +59,31 @@ public class PlayerFire : MonoBehaviour
     }
 
     void InstantiateBullet()
-{
-    float direction = Mathf.Sign(transform.localScale.x);
-    Quaternion bulletRotation = direction > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
-
-    Transform nearestEnemy = FindNearestEnemy();
-    if (nearestEnemy != null)
     {
-        // Tính toán góc quay để viên đạn hướng đến enemy
-        Vector2 directionToEnemy = (nearestEnemy.position - gun.position).normalized;
-        float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
-        
-        // Tạo góc quay chỉ trên trục Z (đúng cho game 2D)
-        bulletRotation = Quaternion.Euler(0, 0, angle);
-    }
+        float direction = Mathf.Sign(transform.localScale.x);
+        Quaternion bulletRotation = direction > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
 
-    // Instantiate viên đạn và đặt vào bulletPool
-    GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
-    newBullet.transform.SetParent(bulletPool);
-}
+        Transform nearestEnemy = FindNearestEnemy();
+        if (nearestEnemy != null)
+        {
+            // Tính toán góc quay để viên đạn hướng đến enemy
+            Vector2 directionToEnemy = (nearestEnemy.position - gun.position).normalized;
+            float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
+            
+            // Tạo góc quay chỉ trên trục Z (đúng cho game 2D)
+            bulletRotation = Quaternion.Euler(0, 0, angle);
+        }
+
+        // Instantiate viên đạn và đặt vào bulletPool
+        int damage = playerCharacter.GetDamage();
+        GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
+        newBullet.transform.SetParent(bulletPool);
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.SetDamage(damage); // ✅ Gán damage đúng cách
+        }
+    }
 
     private Transform FindNearestEnemy()
     {
@@ -84,5 +102,18 @@ public class PlayerFire : MonoBehaviour
         }
         return nearestEnemy;
     }
+
+    void SpantSpeedRefresh(Attr totalStats)
+    {
+        SpantSpeed = 1/totalStats.attackSpeed;
+        Debug.Log($"Check update SpantSpeed: {SpantSpeed}");
+        UpdateFireRate();
+    }
+    void UpdateFireRate()
+    {
+        CancelInvoke("AutoFire"); // 🔥 Hủy bắn tự động cũ
+        InvokeRepeating("AutoFire", 0f, SpantSpeed); // 🔥 Gọi lại với tốc độ mới
+    }
+
 
 }

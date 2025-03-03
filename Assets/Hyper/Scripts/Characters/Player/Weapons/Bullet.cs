@@ -10,4 +10,5 @@ public class Bullet : BulletBase
         BulletMovement movement = GetComponent<BulletMovement>();
         Initialize(soundManager, movement);
     }
+
 }

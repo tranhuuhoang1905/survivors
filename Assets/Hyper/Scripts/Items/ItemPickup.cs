@@ -11,6 +11,7 @@ public class CoinPickup : MonoBehaviour
     bool isMovingToPlayer = false;
     protected Transform player;
     [SerializeField] protected float moveSpeed = 5f;
+    [SerializeField] private AudioClip pickup;
 
     void FixedUpdate()
     {
@@ -47,6 +48,8 @@ public class CoinPickup : MonoBehaviour
         ScoreSignal.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
         // AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
         gameObject.SetActive(false);
+        
+        AudioSource.PlayClipAtPoint(pickup, Camera.main.transform.position, 0.1f);
         Destroy(gameObject);
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3821729072381390836}
   - component: {fileID: 5533667702098347973}
   - component: {fileID: 8618045590341194745}
+  - component: {fileID: 8983145116904680677}
   m_Layer: 12
   m_Name: ItemBase
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
   scoreType: 1
   pointsForCoinPickup: 5
   moveSpeed: 8
+  pickup: {fileID: 8300000, guid: fb71cf3d552ed8f4b8944e468dfb8fd6, type: 3}
 --- !u!58 &8618045590341194745
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,3 +196,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.31
+--- !u!50 &8983145116904680677
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2826045216167906465}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

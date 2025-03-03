@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathKick = new Vector2(10f, 10f);
     private SpriteRenderer spriteRenderer;
+    private Character playerCharacter;
 
 
     Vector2 moveInput;
@@ -18,7 +19,11 @@ public class PlayerMovement : MonoBehaviour
     float gravityScaleAtStart;
     bool isAlive = true;
     public bool IsAlive => isAlive; // Trả về trạng thái sống
+    void Awake()
+    {
 
+        StatsRefresh.OnRefresh += RunSpeedRefresh; // Đăng ký sự kiện
+    }
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -27,8 +32,12 @@ public class PlayerMovement : MonoBehaviour
         myFeetCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         gravityScaleAtStart = myRigidbody.gravityScale;
+        playerCharacter = GetComponent<Character>();
     }
-
+    void OnDestroy()
+    {
+        StatsRefresh.OnRefresh -= RunSpeedRefresh; // Đăng ký sự kiện
+    }
     void Update()
     {
         if (!isAlive) return;
@@ -40,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        Debug.Log("check onmove");
         if (!isAlive) return;
         moveInput = value.Get<Vector2>();
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) return;
@@ -100,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         myAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
     }
 
+
     void Die()
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
@@ -109,5 +120,10 @@ public class PlayerMovement : MonoBehaviour
             myRigidbody.velocity = deathKick;
             // FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
+    }
+    void RunSpeedRefresh( Attr totalStats)
+    {
+        runSpeed = totalStats.moveSpeed;
+        Debug.Log($"Check update runSpeed: {runSpeed}");
     }
 }
