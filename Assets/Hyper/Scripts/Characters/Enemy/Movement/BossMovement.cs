@@ -24,14 +24,7 @@ public class BossMovement : EnemyMovementBase
         }
         else
         {
-            StopMoving();
+            IsMoving(false);
         }
-    }
-
-    protected override void StopMoving()
-    {
-        // myRigidbody.velocity = Vector2.zero;
-        // myAnimator.SetInteger("AnimState", 0);
-        // myAnimator.SetBool("Grounded", false);
     }
 }

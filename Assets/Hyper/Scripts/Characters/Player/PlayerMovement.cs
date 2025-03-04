@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
         ClimbLadder();
-        Die();
+        // Die();
     }
 
     void OnMove(InputValue value)
@@ -111,15 +111,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Die()
+    public void Die()
     {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
-        {
-            isAlive = false;
-            myAnimator.SetTrigger("Dying");
-            myRigidbody.velocity = deathKick;
-            // FindObjectOfType<GameSession>().ProcessPlayerDeath();
-        }
+        if (!isAlive) return;
+        isAlive = false;
+        myAnimator.SetTrigger("Dying");
+        // if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
+        // {
+        //     isAlive = false;
+        //     myRigidbody.velocity = deathKick;
+        //     // FindObjectOfType<GameSession>().ProcessPlayerDeath();
+        // }
     }
     void RunSpeedRefresh( Attr totalStats)
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float health, maxHealth = 3f;
+    [SerializeField] protected int damage = 10;
     [SerializeField] protected int score = 1;
     [SerializeField] int scoreType = 1;
     [SerializeField] GameObject itemBonus;

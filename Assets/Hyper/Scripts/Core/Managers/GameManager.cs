@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public ScoreEvent ScoreEvent;
     private int playerType = 1;
     private int score = 0;
+    private int timeSeconds = 0;
     
     protected SliderBar healthBar;
     public SceneSignal sceneSignal;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
+        StartCoroutine(startTime());
         RefreshUI();
     }
     void OnDestroy()
@@ -67,6 +69,22 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator startTime()
+    {
+        while (true)
+        {
+            timeSeconds +=1;
+            UpdateTimerUI();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    private void UpdateTimerUI()
+    {
+
+        ScoreEvent.RaiseTimeUpdated(timeSeconds);
     }
 
     public void RefreshUI()

@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     private int[] expToLevelUp = { 0, 10, 20, 35, 50, 70, 95, 120, 150, 185, 225, 375,500,500,500,500,500,500,500,500,500 };
     private CharacterStats stats;
     protected SliderBar healthBar;
+    private PlayerMovement playerMovement;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class Character : MonoBehaviour
         }
         Instance = this;
         healthBar = GetComponentInChildren<SliderBar>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Start()
@@ -74,6 +76,17 @@ public class Character : MonoBehaviour
     public int GetDamage()
     {
         return stats.TotalStats.damage;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        healthBar.UpdateSliderBar(health, maxHealth);
+        if (health <= 0)
+        {
+            Debug.Log("Player Die");
+            playerMovement.Die();
+        }
     }
 
 }

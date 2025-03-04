@@ -7,7 +7,7 @@ public class EnemyMovementBase : MonoBehaviour
     [SerializeField] protected float moveSpeed = 1f;
     protected Animator myAnimator;
     private SpriteRenderer spriteRenderer;
-    protected bool isAttacking = false;
+    protected bool isMovement = true;
     protected Transform player;
 
     protected virtual void Start()
@@ -21,7 +21,7 @@ public class EnemyMovementBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!isAttacking)
+        if (isMovement)
         {
             MoveToPlayer();
         }
@@ -42,7 +42,8 @@ public class EnemyMovementBase : MonoBehaviour
         }
     }
 
-    protected virtual void StopMoving()
+    public virtual void IsMoving(bool action)
     {
+        isMovement = action;
     }
 }
