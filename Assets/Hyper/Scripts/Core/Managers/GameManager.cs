@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
                     Character.Instance.AddHealth(scoreEntry.value);
                 }
                 break;
+            case 11:
+                if (Character.Instance != null)
+                {
+                    Character.Instance.AddSwordLevel(scoreEntry.value);
+                }
+                break;
             default:
                 break;
         }
@@ -98,5 +104,13 @@ public class GameManager : MonoBehaviour
             ScoreEvent.RaiseExpUpdated(exp, maxExp, level);
         }
     }
-    
+    public void SetPlayerType(int type)
+    {
+        playerType = type;
+    }
+
+    public int GetPlayerType()
+    {
+        return playerType;
+    }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
+using System;
 public class ScoreEvent
 {
-    public static event System.Action<ScoreEntry> OnAddScore;
-    public static event System.Action<int, int, int> OnExpUpdated;
-    public static event System.Action<int> OnScoreUpdated;
-    public static event System.Action<int> OnTimeUpdated;
+    public static event Action<ScoreEntry> OnAddScore;
+    public static event Action<int, int, int> OnExpUpdated;
+    public static event Action<int> OnScoreUpdated;
+    public static event Action<int> OnTimeUpdated;
 
     public static void RaiseScore(ScoreEntry scoreEntry)
     {

@@ -31,7 +31,10 @@ public class Enemy : EnemyBase
         }
     }
 
-
+    public void Attack()
+    {
+        enemyMovement.Attack();
+    }
     public int GetDamage()
     {
         return damage;

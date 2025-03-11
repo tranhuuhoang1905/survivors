@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timeText;
+    // [SerializeField] private TextMeshProUGUI timeFinalText;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private GameObject winUI;
+    [SerializeField] private GameObject mainUI;
     
     [SerializeField] private Slider slider;
     void Awake()
@@ -23,12 +27,22 @@ public class UIManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    void Start(){
+        HideAllPopup();
+    }
+    public void HideAllPopup()
+    {
+        if (winUI) winUI.SetActive(false);
+        if (mainUI) mainUI.SetActive(true);
 
+        Time.timeScale = 1f;
+    }
     void OnEnable()
     {
         ScoreEvent.OnScoreUpdated += UpdateScoreUI;
         ScoreEvent.OnTimeUpdated += UpdateTimeUI;
         ScoreEvent.OnExpUpdated += UpdateExpBarUI;
+        GameEvents.OnGameOver += ShowWinUI;
     }
 
     void OnDisable()
@@ -36,6 +50,7 @@ public class UIManager : MonoBehaviour
         ScoreEvent.OnScoreUpdated -= UpdateScoreUI;
         ScoreEvent.OnTimeUpdated -= UpdateTimeUI;
         ScoreEvent.OnExpUpdated -= UpdateExpBarUI;
+        GameEvents.OnGameOver -= ShowWinUI;
     }
 
     private void UpdateScoreUI(int newScore)
@@ -63,5 +78,28 @@ public class UIManager : MonoBehaviour
             int iExpPercentage = currentValue / maxValue;
             slider.value = fExpPercentage;
         }
+    }
+    public void ReStartGame()
+    {
+        Destroy(GameManager.Instance.gameObject);
+        Destroy(AudioManager.Instance.gameObject);
+        Destroy(GameController.Instance.gameObject);
+        HideAllPopup();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ShowWinUI()
+    {
+        if (winUI) 
+        {
+            winUI.SetActive(true);
+            TextMeshProUGUI timeFinalText = winUI.transform.Find("Popup/Time_Panel/Time/TimeValue")?.GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI scoreFinalText = winUI.transform.Find("Popup/ScorePanel/Score/ScoreValue")?.GetComponent<TextMeshProUGUI>();
+            if(scoreFinalText) scoreFinalText.text = scoreText.text;
+            if(timeFinalText) timeFinalText.text = timeText.text;
+            
+            
+        }
+        Time.timeScale = 0f;
     }
 }

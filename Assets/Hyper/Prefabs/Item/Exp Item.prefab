@@ -33,12 +33,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fb71cf3d552ed8f4b8944e468dfb8fd6, type: 3}
     - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: moveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: scoreType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: pointsForCoinPickup
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6333207138129255173, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_LocalPosition.x

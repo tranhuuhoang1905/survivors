@@ -22,7 +22,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (isMovingToPlayer)
         {
-            MoveToPlayer();
+            Move();
         }
         if (player && Vector2.Distance(transform.position, player.position) < 0.5f)
         {
@@ -37,16 +37,8 @@ public class CoinPickup : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
         }
     }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-    //     {
-    //         CollectItem();
-    //     }
-    // }
     
-    private void MoveToPlayer()
+    private void Move()
     {
         Vector2 direction = (player.position - transform.position ).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
@@ -55,7 +47,7 @@ public class CoinPickup : MonoBehaviour
     {
         wasCollected = true;
         ScoreEntry scoreEntry = new ScoreEntry(scoreType, pointsForCoinPickup);
-        ScoreEvent.RaiseScore(scoreEntry); // 🔥 Gửi Signal khi quái chết
+        ScoreEvent.RaiseScore(scoreEntry);
         // AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
         gameObject.SetActive(false);
         

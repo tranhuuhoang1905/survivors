@@ -13,12 +13,12 @@ public class BossMovement : EnemyMovementBase
     protected override void Update()
     {
         if (attackSystem == null){
-            MoveToPlayer();
+            Move();
             return;
         }
         if (!attackSystem.IsAttacking)
         {
-            MoveToPlayer();
+            Move();
             myAnimator.SetInteger("AnimState", 1);
             myAnimator.SetBool("Grounded", true);
         }

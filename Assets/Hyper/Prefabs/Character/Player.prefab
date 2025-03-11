@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3141419833246604478}
   - component: {fileID: 8626310433780907422}
   - component: {fileID: 5202692002640849755}
-  - component: {fileID: 6756081074032024617}
   - component: {fileID: 2152655406492473090}
   m_Layer: 0
   m_Name: Player
@@ -249,22 +248,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6756081074032024617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575016488554890544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e228261f5375ca47a34663a847d6d02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runSpeed: 10
-  jumpSpeed: 5
-  climbSpeed: 5
-  deathKick: {x: 10, y: 10}
 --- !u!61 &2152655406492473090
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -144,7 +144,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 1.75
 --- !u!114 &5533667702098347973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreType: 1
   pointsForCoinPickup: 5
-  moveSpeed: 8
+  moveSpeed: 20
   pickup: {fileID: 8300000, guid: fb71cf3d552ed8f4b8944e468dfb8fd6, type: 3}
 --- !u!58 &8618045590341194745
 CircleCollider2D:

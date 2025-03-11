@@ -51,6 +51,7 @@ public class EnemyAttackController : MonoBehaviour
                 {
                     playerCharacter.TakeDamage(enemy.GetDamage());
                 }
+                enemy.Attack();
                 Debug.Log("enemy takeDamage");
             }
             yield return new WaitForSeconds(0.5f);
