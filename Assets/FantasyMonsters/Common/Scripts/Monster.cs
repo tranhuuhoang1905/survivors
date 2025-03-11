@@ -18,6 +18,8 @@ namespace Assets.FantasyMonsters.Common.Scripts
         public Animator Animator;
         public bool Variations;
         public event Action<string> OnEvent = eventName => { };
+        private Transform Body;
+        
 
         /// <summary>
         /// Called on Awake.
@@ -45,6 +47,7 @@ namespace Assets.FantasyMonsters.Common.Scripts
             }
 
             Animator.keepAnimatorStateOnDisable = true;
+            Body = transform.Find("Body");
             //Animator.keepAnimatorControllerStateOnDisable = true;
         }
         void Start()
@@ -59,6 +62,7 @@ namespace Assets.FantasyMonsters.Common.Scripts
         {
             Animator.SetInteger("State", (int) state);
         }
+        
 
         /// <summary>
         /// Play Attack animation.
@@ -111,6 +115,14 @@ namespace Assets.FantasyMonsters.Common.Scripts
             if (index < JawSprites.Count)
             {
                 Jaw.sprite = JawSprites[index];
+            }
+        }
+
+        public void Flip(int x)
+        {
+            if (Body) 
+            {
+                Body.localScale = new Vector3(x, 1, 1);
             }
         }
     }

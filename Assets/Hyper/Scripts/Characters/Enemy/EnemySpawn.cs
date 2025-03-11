@@ -34,9 +34,10 @@ public class EnemySpawn : MonoBehaviour
             {
                 float randomSpawnTime = Random.Range(SpantSpeed*0.5f, SpantSpeed* 1.5f); // 🔥 Random thời gian spawn
                 yield return new WaitForSeconds(randomSpawnTime);
-
+                
                 GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation);
-                newEnemy.transform.SetParent(enemyPool,false);
+                newEnemy.transform.SetParent(enemyPool,true);
+                
             }
             else
             {

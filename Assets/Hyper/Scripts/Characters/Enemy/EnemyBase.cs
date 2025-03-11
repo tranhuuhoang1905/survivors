@@ -44,7 +44,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
-        
-        GameObject newEnemy = Instantiate(itemBonus, transform.position, transform.rotation);
+        if(itemBonus){
+            GameObject newEnemy = Instantiate(itemBonus, transform.position, transform.rotation);
+        }
     }
 }

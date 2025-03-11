@@ -19,8 +19,6 @@ public class EnemyMovementBase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         monster = GetComponent<Monster>();
-
-        transform.localScale = new Vector2(Mathf.Sign(moveSpeed), 1f);
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         bodyMonster = transform.Find("Body")?.gameObject;
 
@@ -37,9 +35,6 @@ public class EnemyMovementBase : MonoBehaviour
 
     protected virtual void Move()
     {
-        // monster.
-        if ( monster){
-        }
         Vector2 direction = (player.position - transform.position ).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
         FlipEnemyFacing(direction.x);
@@ -54,12 +49,13 @@ public class EnemyMovementBase : MonoBehaviour
             {
                 if (directionX < 0)
                 {
-                    bodyMonster.transform.localScale = new Vector3(-1, 1, 1);
+                    monster.Flip(1);
                 }
                 else
                 {
-                    bodyMonster.transform.localScale = new Vector3(1, 1, 1);
+                    monster.Flip(-1);
                 }
+                
             }
             else
             {
@@ -75,6 +71,9 @@ public class EnemyMovementBase : MonoBehaviour
     }
     public virtual void Attack()
     {
-        monster.Attack();
+        if (monster)
+        {
+            monster.Attack();
+        }
     }
 }
