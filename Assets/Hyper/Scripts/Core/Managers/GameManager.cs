@@ -50,23 +50,23 @@ public class GameManager : MonoBehaviour
     {
         switch (scoreEntry.scoreType)
         {
-            case 1:
+            case ScoreType.Score:
                 score += scoreEntry.value; // Cộng vào điểm số
                 ScoreEvent.RaiseScoreUpdated(score);
                 break;
-            case 2:
+            case ScoreType.Experience:
                 if (Character.Instance != null)
                 {
                     Character.Instance.AddExp(scoreEntry.value);
                 }
                 break;
-            case 3:
+            case ScoreType.Health:
                 if (Character.Instance != null)
                 {
                     Character.Instance.AddHealth(scoreEntry.value);
                 }
                 break;
-            case 11:
+            case ScoreType.SwordUpgrade:
                 if (Character.Instance != null)
                 {
                     Character.Instance.AddSwordLevel(scoreEntry.value);

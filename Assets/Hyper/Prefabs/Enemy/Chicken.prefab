@@ -747,7 +747,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  bodyMonster: {fileID: 0}
 --- !u!70 &6797767152490619307
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -800,6 +799,9 @@ MonoBehaviour:
   damage: 5
   score: 1
   scoreType: 1
+  scoreEntry:
+    scoreType: 1
+    value: 1
   itemBonus: {fileID: 9075149547361245957, guid: 81175292eb7ad6641bda4a011ff7e3e2, type: 3}
 --- !u!70 &955782639787374637
 CapsuleCollider2D:

@@ -974,6 +974,9 @@ MonoBehaviour:
   damage: 30
   score: 5
   scoreType: 1
+  scoreEntry:
+    scoreType: 1
+    value: 1
   itemBonus: {fileID: 2420706852529584771, guid: a2e9a6294de0d9249ab427378e71f011, type: 3}
 --- !u!70 &120992533510109049
 CapsuleCollider2D:

@@ -6,6 +6,8 @@ public class Enemy : EnemyBase
 {
     private GameObject player;
     private EnemyMovementBase enemyMovement;
+    [SerializeField] GameObject itemBonus;
+    [SerializeField] ScoreEntry scoreEntry;
 
     void Start()
     {
@@ -43,5 +45,16 @@ public class Enemy : EnemyBase
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    protected override void Die()
+    {
+        ScoreEvent.RaiseScore(scoreEntry); // 🔥 Gửi sự kiện khi enemy chết
+        Destroy(gameObject); // 🔥 Xóa enemy khỏi scene
+        
+        if (itemBonus)
+        {
+            Instantiate(itemBonus, transform.position, transform.rotation);
+        }
     }
 }

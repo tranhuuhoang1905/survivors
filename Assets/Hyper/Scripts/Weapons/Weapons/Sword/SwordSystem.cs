@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSwordManager : MonoBehaviour
+public class SwordSystem : MonoBehaviour
 {
     [SerializeField] GameObject swordPrefab;
-    [SerializeField] int levelSword = 0;
     private List<GameObject> swords = new List<GameObject>();
     [SerializeField] private float radius = 2.0f;
     private Character playerCharacter;
@@ -22,16 +21,9 @@ public class CharacterSwordManager : MonoBehaviour
     void Start()
     {
         playerCharacter = GetComponent<Character>();
-        UpdateSwordInventory();
-    }
-    public void LevelUp(int addLevel)
-    {
-        Debug.Log($"check ***************************{levelSword}");
-        levelSword += addLevel;
-        UpdateSwordInventory();
     }
     // Cập nhật số lượng kiếm trong mảng dựa vào level
-    private void UpdateSwordInventory()
+    public void UpdateSwordInventory(int levelSword)
     {
         foreach (GameObject sword in swords)
         {
@@ -41,11 +33,11 @@ public class CharacterSwordManager : MonoBehaviour
 
         for (int i = 0; i < levelSword; i++)
         {
-            SpawnSword(i);
+            SpawnSword(i,levelSword);
         }
         
     }
-    private void SpawnSword(int i)
+    private void SpawnSword(int i, int levelSword)
     {
         float angle = i * (360f / levelSword); // Chia đều góc trên vòng tròn
             float radian = angle * Mathf.Deg2Rad; // Chuyển sang radian
@@ -56,7 +48,6 @@ public class CharacterSwordManager : MonoBehaviour
             
             Vector3 spawnPosition = new Vector3(x,y,0);
             
-    Debug.Log($"check spawn sword {i}");
             GameObject newSword = Instantiate(swordPrefab, spawnPosition, Quaternion.identity);
             Sword newSwordComponent = newSword.GetComponent<Sword>();
             Attr TotalStats = playerCharacter.GetCharacterStats();
@@ -75,5 +66,4 @@ public class CharacterSwordManager : MonoBehaviour
             swordComponent.RefreshSwordStats(totalStats);
         }
     }
-    
 }

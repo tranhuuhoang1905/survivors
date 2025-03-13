@@ -1,12 +1,12 @@
-
+[System.Serializable]
 public class ScoreEntry
 {
-    public int scoreType; // 1, 2, 3
+    public ScoreType scoreType;
     public int value;
 
-    public ScoreEntry(int type, int val)
+    public ScoreEntry(ScoreType type, int val)
     {
         scoreType = type;
-        value = val;
+        value = val;    
     }
 }

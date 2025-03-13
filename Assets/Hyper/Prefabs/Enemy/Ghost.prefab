@@ -305,6 +305,9 @@ MonoBehaviour:
   damage: 5
   score: 1
   scoreType: 1
+  scoreEntry:
+    scoreType: 1
+    value: 1
   itemBonus: {fileID: 3818407301738674324, guid: e2c5395901398904eb004686dafc396f, type: 3}
 --- !u!114 &7327815195857864219
 MonoBehaviour:

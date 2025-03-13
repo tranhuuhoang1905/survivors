@@ -12,30 +12,26 @@ public class Attr
     public int armor;
     public int health;
 
-    // Constructor mặc định
-    public Attr()
-    {
-        damage = 0;
-        attack = 0;
-        swordAttack = 0;
-        attackSpeed = 0;
-        swordSpeed = 0;
-        moveSpeed = 0;
-        armor = 0;
-        health = 0;
-    }
-
     // Constructor có tham số
-    public Attr(int dmg, int atk, int swordAtk, float atkSpd, float swordSpd, float moveSpd, int arm, int hp)
+    public Attr(
+        int damage = 0,
+        int attack = 0,
+        int swordAttack = 0,
+        float attackSpeed = 0f,
+        float swordSpeed = 0f,
+        float moveSpeed = 0f,
+        int armor = 0,
+        int health = 0
+    )
     {
-        damage = dmg;
-        attack = atk;
-        swordAttack = swordAtk;
-        attackSpeed = atkSpd;
-        swordSpeed = swordSpd;
-        moveSpeed = moveSpd;
-        armor = arm;
-        health = hp;
+        this.damage = damage;
+        this.attack = attack;
+        this.swordAttack = swordAttack;
+        this.attackSpeed = attackSpeed;
+        this.swordSpeed = swordSpeed;
+        this.moveSpeed = moveSpeed;
+        this.armor = armor;
+        this.health = health;
     }
 
     // Cộng chỉ số từ item hoặc buff

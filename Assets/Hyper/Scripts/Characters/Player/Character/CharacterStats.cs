@@ -11,8 +11,26 @@ public class CharacterStats
     public CharacterStats(int startLevel)
     {
         level = startLevel;
-        baseStats    = new Attr(1,  5, 3, 1f  ,2f,   5f,  5, 100);
-        StatsUpLevel = new Attr(10, 5, 2, 0.3f,0.2f, 0.5f, 1, 25);
+        baseStats = new Attr(
+            damage: 1,
+            attack: 5,
+            swordAttack: 3,
+            attackSpeed: 1f,
+            swordSpeed: 2f,
+            moveSpeed: 5f,
+            armor: 5,
+            health: 100
+        );
+        StatsUpLevel =new Attr(
+            damage: 10,
+            attack: 5,
+            swordAttack: 2,
+            attackSpeed: 0.3f,
+            swordSpeed: 0.2f,
+            moveSpeed: 0.5f,
+            armor: 1,
+            health: 25
+        );
         itemBonus = new Attr();
     }
 

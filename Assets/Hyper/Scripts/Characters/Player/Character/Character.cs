@@ -14,8 +14,8 @@ public class Character : MonoBehaviour
     private CharacterStats stats;
     protected SliderBar healthBar;
     private CharacterMovement characterMovement;
-    private CharacterSwordManager characterSwordManager;
-    private CharacetFireManager characetFireManager;
+    private CharacterSwordHandler characterSwordHandler;
+    private CharacterFireHandler characterFireHandler;
 
     void Awake()
     {
@@ -27,8 +27,8 @@ public class Character : MonoBehaviour
         Instance = this;
         healthBar = GetComponentInChildren<SliderBar>();
         characterMovement = GetComponent<CharacterMovement>();
-        characterSwordManager = GetComponent<CharacterSwordManager>();
-        characetFireManager= GetComponent<CharacetFireManager>();
+        characterSwordHandler = GetComponent<CharacterSwordHandler>();
+        characterFireHandler= GetComponent<CharacterFireHandler>();
     }
 
     void Start()
@@ -42,19 +42,19 @@ public class Character : MonoBehaviour
 
     IEnumerator WaitForSwordManagerAndLoadWeapon()
     {
-        yield return new WaitUntil(() => characterSwordManager != null);
+        yield return new WaitUntil(() => characterSwordHandler != null);
         yield return new WaitForSeconds(0.2f); // Thêm delay nếu cần
         LoadWeapon();
     }
     void LoadWeapon(){
         
         int playerType = GameManager.Instance.GetPlayerType();
-        characetFireManager.SetIsFire(true);
+        characterFireHandler.SetIsFire(true);
         AddSwordLevel(1);
         // switch (playerType)
         // {
         //     case 1:
-        //         characetFireManager.SetIsFire(true);
+        //         characterFireHandler.SetIsFire(true);
         //         break;
         //     case 2:
         //         AddSwordLevel(1);
@@ -87,7 +87,7 @@ public class Character : MonoBehaviour
     }
     public void AddSwordLevel(int amount)
     {
-        characterSwordManager.LevelUp(amount);
+        characterSwordHandler.LevelUp(amount);
         
     }
 
@@ -128,13 +128,11 @@ public class Character : MonoBehaviour
     }
     public Attr GetCharacterStats(){
         
-        Debug.Log($"check Character GetCharacterStats TotalStats{stats.TotalStats}");
         return stats.TotalStats;
     }
 
     private void Die()
     {
-        // Time.timeScale = 0;
         characterMovement.Die();
         GameEvents.GameOver();
     }

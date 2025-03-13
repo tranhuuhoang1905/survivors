@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     // [SerializeField] AudioClip coinPickupSFX;
-    [SerializeField] int scoreType = 1;
+    [SerializeField] ScoreType scoreType = ScoreType.Score;
     [SerializeField] int pointsForCoinPickup = 5;
     bool wasCollected = false;
     bool isMovingToPlayer = false;
@@ -48,7 +48,6 @@ public class CoinPickup : MonoBehaviour
         wasCollected = true;
         ScoreEntry scoreEntry = new ScoreEntry(scoreType, pointsForCoinPickup);
         ScoreEvent.RaiseScore(scoreEntry);
-        // AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
         gameObject.SetActive(false);
         
         AudioSource.PlayClipAtPoint(pickup, Camera.main.transform.position, 0.1f);
