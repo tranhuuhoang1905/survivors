@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         // Cấu hình AudioSource
         musicSource.loop = true; // Nhạc nền chạy liên tục
         musicSource.playOnAwake = false; // Không tự động phát khi Scene load
-        musicSource.volume = 1f; // Đặt âm lượng mặc định
+        musicSource.volume = 0.2f; // Đặt âm lượng mặc định
 
         // Phát nhạc nền mặc định nếu có
         if (backgroundMusic != null)

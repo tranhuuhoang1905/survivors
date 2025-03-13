@@ -49,18 +49,20 @@ public class Character : MonoBehaviour
     void LoadWeapon(){
         
         int playerType = GameManager.Instance.GetPlayerType();
-        switch (playerType)
-        {
-            case 1:
-                characetFireManager.SetIsFire(true);
-                break;
-            case 2:
-                AddSwordLevel(1);
-                break;
+        characetFireManager.SetIsFire(true);
+        AddSwordLevel(1);
+        // switch (playerType)
+        // {
+        //     case 1:
+        //         characetFireManager.SetIsFire(true);
+        //         break;
+        //     case 2:
+        //         AddSwordLevel(1);
+        //         break;
             
-            default:
-                break;
-        }
+        //     default:
+        //         break;
+        // }
     }
 
     public void AddExp(int amount)

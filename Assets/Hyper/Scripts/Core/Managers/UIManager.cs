@@ -79,13 +79,17 @@ public class UIManager : MonoBehaviour
             slider.value = fExpPercentage;
         }
     }
-    public void ReStartGame()
+    public void OnExitButtonReStartGame()
     {
         Destroy(GameManager.Instance.gameObject);
         Destroy(AudioManager.Instance.gameObject);
         Destroy(GameController.Instance.gameObject);
         HideAllPopup();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void OnExitButtonQuitPressed()
+    {
+        GameController.Instance.Quit();
     }
 
     public void ShowWinUI()

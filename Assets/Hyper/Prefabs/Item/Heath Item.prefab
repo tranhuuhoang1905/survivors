@@ -13,16 +13,20 @@ PrefabInstance:
       value: Heath Item
       objectReference: {fileID: 0}
     - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 978f6f70fd0e9464886cc92af14e28d6, type: 3}
+    - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_Color.b
-      value: 0.14960839
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_Color.g
-      value: 0.29142123
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4323086855409788685, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_Color.r
-      value: 0.7735849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5533667702098347973, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: scoreType
@@ -71,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 6333207138129255173, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700504737455407023, guid: 836e7f83e947c7c4fb8b63cea4228f49, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

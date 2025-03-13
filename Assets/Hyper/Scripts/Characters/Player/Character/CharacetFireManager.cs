@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class CharacetFireManager : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
     [SerializeField] float SpantSpeed = 1f;
-    private bool isFire = false;
+    [SerializeField] bool isFire = false;
     public Transform bulletPool;
     private Character playerCharacter;
     Animator myAnimator;
@@ -39,17 +40,53 @@ public class CharacetFireManager : MonoBehaviour
         StatsRefresh.OnRefresh -= SpantSpeedRefresh; // Đăng ký sự kiện
     }
 
-    // void OnFire(InputValue value)
-    // {
-    //     if (!CharacterMovement.IsAlive) return;
+    /// 🔥 Hàm bắn 3 lượt, mỗi lượt 20 viên đạn
+    public void FireSkill()
+    {
+        if (!characterMovement.IsAlive) return;
+        if (GameManager.Instance.GetScore() < 20) return;
+        ScoreEntry scoreEntry = new ScoreEntry(1, -20);
+        GameManager.Instance.AddToScore(scoreEntry);
+        StartCoroutine(FireMultipleRounds());
+    }
 
-    //     float direction = Mathf.Sign(transform.localScale.x);
-    //     Quaternion bulletRotation = direction > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+    IEnumerator FireMultipleRounds()
+    {
+        for (int i = 0; i < 3; i++) // Bắn 3 lượt
+        {
+            FireBurst();
+            yield return new WaitForSeconds(0.2f); // Chờ 0.2s trước khi bắn lượt tiếp theo
+        }
+    }
 
-    //     // Instantiate viên đạn và đặt vào bulletPool
-    //     GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
-    //     newBullet.transform.SetParent(bulletPool);
-    // }
+    /// 🔥 Hàm bắn 20 viên đạn theo 20 hướng khác nhau
+    void FireBurst()
+    {
+        float angleStep = 360f / 20; // Chia đều 360 độ cho 20 viên đạn
+        float startAngle = 0f; // Bắt đầu từ góc 0 độ
+
+        for (int i = 0; i < 20; i++)
+        {
+            float angle = startAngle + (angleStep * i);
+            Quaternion bulletRotation = Quaternion.Euler(0, 0, angle);
+            
+            SpawnBullet(bulletRotation);
+        }
+    }
+
+    /// 🏹 Hàm tạo viên đạn
+    void SpawnBullet(Quaternion bulletRotation)
+    {
+        int damage = playerCharacter.GetDamage();
+        GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
+        newBullet.transform.SetParent(bulletPool);
+        
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.SetDamage(damage); // Gán damage cho viên đạn
+        }
+    }
 
     public void AutoFire()
     {
@@ -75,15 +112,17 @@ public class CharacetFireManager : MonoBehaviour
             bulletRotation = Quaternion.Euler(0, 0, angle);
         }
 
-        // Instantiate viên đạn và đặt vào bulletPool
-        int damage = playerCharacter.GetDamage();
-        GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
-        newBullet.transform.SetParent(bulletPool);
-        Bullet bulletScript = newBullet.GetComponent<Bullet>();
-        if (bulletScript != null)
-        {
-            bulletScript.SetDamage(damage); // ✅ Gán damage đúng cách
-        }
+        SpawnBullet(bulletRotation);
+
+        // // Instantiate viên đạn và đặt vào bulletPool
+        // int damage = playerCharacter.GetDamage();
+        // GameObject newBullet = Instantiate(bullet, gun.position, bulletRotation);
+        // newBullet.transform.SetParent(bulletPool);
+        // Bullet bulletScript = newBullet.GetComponent<Bullet>();
+        // if (bulletScript != null)
+        // {
+        //     bulletScript.SetDamage(damage); // ✅ Gán damage đúng cách
+        // }
     }
 
     private Transform FindNearestEnemy()
@@ -117,7 +156,7 @@ public class CharacetFireManager : MonoBehaviour
     }
     public void SetIsFire(bool flag)
     {
-        isFire= true;
+        isFire= flag;
     }
 
 

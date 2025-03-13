@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+#if UNITY_EDITOR
+using UnityEditor; // Thêm thư viện UnityEditor để dùng ExitPlaymode()
+#endif
+
 public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
@@ -72,6 +76,14 @@ public class GameController : MonoBehaviour
 
             yield return null;
         }
+    }
+    public void Quit()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode(); // Thoát hẳn Unity Editor khi nhấn Exit
+        #else
+            Application.Quit(); // Thoát game khi đã build
+        #endif
     }
 
     

@@ -113,4 +113,8 @@ public class GameManager : MonoBehaviour
     {
         return playerType;
     }
+    public int GetScore()
+    {
+        return score;
+    }
 }

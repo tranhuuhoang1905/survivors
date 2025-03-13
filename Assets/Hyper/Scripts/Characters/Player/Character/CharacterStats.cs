@@ -12,7 +12,7 @@ public class CharacterStats
     {
         level = startLevel;
         baseStats    = new Attr(1,  5, 3, 1f  ,2f,   5f,  5, 100);
-        StatsUpLevel = new Attr(10, 2, 2, 0.1f,0.2f, 0.5f, 1, 10);
+        StatsUpLevel = new Attr(10, 5, 2, 0.3f,0.2f, 0.5f, 1, 25);
         itemBonus = new Attr();
     }
 

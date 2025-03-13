@@ -306,9 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0481aeb548b25f9499b44daff644db8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
-  damage: 10
+  health: 30
+  maxHealth: 30
+  damage: 3
   score: 1
   scoreType: 1
   itemBonus: {fileID: 9075149547361245957, guid: 81175292eb7ad6641bda4a011ff7e3e2, type: 3}

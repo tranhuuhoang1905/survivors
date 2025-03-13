@@ -21,7 +21,6 @@ public class CharacterMovement : MonoBehaviour
     public bool IsAlive => isAlive; // Trả về trạng thái sống
     void Awake()
     {
-
         StatsRefresh.OnRefresh += RunSpeedRefresh; // Đăng ký sự kiện
     }
     void Start()
@@ -37,6 +36,7 @@ public class CharacterMovement : MonoBehaviour
     void OnDestroy()
     {
         StatsRefresh.OnRefresh -= RunSpeedRefresh; // Đăng ký sự kiện
+        
     }
     void Update()
     {
