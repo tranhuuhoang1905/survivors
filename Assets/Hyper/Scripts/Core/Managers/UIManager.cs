@@ -81,11 +81,8 @@ public class UIManager : MonoBehaviour
     }
     public void OnExitButtonReStartGame()
     {
-        Destroy(GameManager.Instance.gameObject);
-        Destroy(AudioManager.Instance.gameObject);
-        Destroy(GameController.Instance.gameObject);
         HideAllPopup();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameController.Instance.RestartGame();
     }
     public void OnExitButtonQuitPressed()
     {

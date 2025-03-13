@@ -23,7 +23,7 @@ public class LoadingController : MonoBehaviour
         {
             AudioManager.Instance.PlayMusic(LoadingScenebackgroundMusic);
         }
-        StartCoroutine(GameController.Instance.LoadTargetScene()); // 🔥 Bắt đầu load scene cần thiết
+        StartCoroutine(SceneLoader.Instance.LoadTargetScene()); // 🔥 Bắt đầu load scene cần thiết
     }
 
     public void UpdateProgress(float progress)
