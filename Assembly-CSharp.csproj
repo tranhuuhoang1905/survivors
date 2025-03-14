@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\SoloState.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterFireHandler.cs" />
+    <Compile Include="Assets\Hyper\Scripts\UI\FloatingTextPoolManager.cs" />
     <Compile Include="Assets\Hyper\Scripts\Core\EnemyAttackController.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\GUIColorAttribute.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\LayerManager.cs" />
@@ -73,9 +75,10 @@
     <Compile Include="Assets\Hyper\Scripts\UI\LoadingController.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Enum.cs" />
     <Compile Include="Assets\Hyper\Scripts\Data\Attr.cs" />
-    <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\BulletSoundManager.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Utilities\EnemyTracker.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\Elevator.cs" />
     <Compile Include="Assets\Hyper\Scripts\UI\BattleSelectController.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\BulletSoundManager.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Sword\SwordBase.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\Character.cs" />
     <Compile Include="Assets\Hyper\Scripts\Core\Events\ScoreEvent.cs" />
@@ -94,10 +97,12 @@
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\SectionHeaderAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Core\Managers\UIManager.cs" />
     <Compile Include="Assets\Layer Lab\Scripts\PanelControl.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\BulletSystem.cs" />
     <Compile Include="Assets\Hyper\Scripts\Core\Events\GameEvent.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\Bullet.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HideIfAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\UI\SliderBar.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterSwordHandler.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\OnValueChangedAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\PropertyGroupAttribute.cs" />
@@ -127,10 +132,12 @@
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\BoundingPlatform.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HideMonoScript.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Sword\Sword.cs" />
+    <Compile Include="Assets\Hyper\Scripts\UI\FloatingText.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\TabGroupAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\Behaviors\EnemyMoveToCenter.cs" />
     <Compile Include="Assets\Hyper\Scripts\Data\ScoreEntry.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\Demo.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Core\ScoreType.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\Utils\TransformRounder.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\MonsterVariation.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\Inanimate.cs" />
@@ -142,13 +149,12 @@
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\Tweens\TweenBase.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\ValidateInputAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Sword\SwordMovement.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Sword\SwordSystem.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HideLabelAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\RequiredAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\IAudioPlayable.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\LabelWidthAttribute.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\EditorScripts\CustomGrid.cs" />
-    <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterSwordManager.cs" />
-    <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacetFireManager.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\MovingPlatform.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterStats.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\GroupAttribute.cs" />

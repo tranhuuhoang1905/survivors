@@ -6,6 +6,7 @@ public class ScoreEvent
     public static event Action<int, int, int> OnExpUpdated;
     public static event Action<int> OnScoreUpdated;
     public static event Action<int> OnTimeUpdated;
+    
 
     public static void RaiseScore(ScoreEntry scoreEntry)
     {

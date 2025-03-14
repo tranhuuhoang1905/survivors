@@ -6,11 +6,16 @@ public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField] protected float health, maxHealth = 3f;
     [SerializeField] protected int damage = 10;
+    private bool isDie = false;
     protected SliderBar healthBar;
 
     protected virtual void Awake()
     {
         healthBar = GetComponentInChildren<SliderBar>();
+    }
+    void Start()
+    {
+        Transform healthBarTransform = transform.Find("Canvas");
     }
     protected virtual void Initialize()
     {
@@ -19,10 +24,15 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(int damageAmount)
     {
+        if (isDie) return;
         health -= damageAmount;
         healthBar.UpdateSliderBar(health, maxHealth);
+        Vector3 positionShow = (healthBar.transform.position + transform.position) / 2;
+        GameEvents.ShowFloatingText(positionShow, damageAmount);
         if (health <= 0)
         {
+            isDie = true;
+            DisablePhysics();
             Die();
         }
     }
@@ -36,4 +46,22 @@ public abstract class EnemyBase : MonoBehaviour
         // Xử lý hiệu ứng làm chậm
     }
     protected abstract void Die();
+    private void DisablePhysics()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb)
+        {
+            
+            Debug.Log("check Rigidbody ------------------------------------");
+            rb.isKinematic = true; // Ngăn enemy bị rơi
+            rb.velocity = Vector3.zero; // Dừng mọi chuyển động
+        }
+        Collider2D col = GetComponent<Collider2D>();
+        if (col)
+        {
+            
+            Debug.Log("check Collider ------------------------------------");
+            col.enabled = false; // Vô hiệu hóa va chạm
+        }
+    }
 }

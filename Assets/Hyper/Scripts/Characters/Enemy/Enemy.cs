@@ -50,11 +50,24 @@ public class Enemy : EnemyBase
     protected override void Die()
     {
         ScoreEvent.RaiseScore(scoreEntry); // 🔥 Gửi sự kiện khi enemy chết
-        Destroy(gameObject); // 🔥 Xóa enemy khỏi scene
+        // DisablePhysics(); // 🔥 Gọi phương thức vô hiệu hóa vật lý
+        
+
+        enemyMovement.Die();
         
         if (itemBonus)
         {
             Instantiate(itemBonus, transform.position, transform.rotation);
         }
+        StartCoroutine(DestroyAfterDelay(1f));
     }
+
+    // 🕒 Coroutine để delay việc xóa enemy
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        Debug.Log("check Delay ------------------------------------");
+        yield return new WaitForSeconds(delay); // Chờ 1 giây
+        Destroy(gameObject); // Xóa enemy khỏi scene
+    }
+    
 }

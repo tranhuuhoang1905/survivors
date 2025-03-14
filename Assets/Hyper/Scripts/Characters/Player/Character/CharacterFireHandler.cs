@@ -68,12 +68,20 @@ public class CharacterFireHandler : MonoBehaviour
         Transform nearestEnemy = enemyTracker.FindNearestEnemy();
         if (nearestEnemy != null)
         {
-            Vector2 directionToEnemy = (nearestEnemy.position - bulletSystem.transform.position).normalized;
+            Vector3 positionAttack = FindPositionAttack(nearestEnemy);
+
+            Vector2 directionToEnemy = (positionAttack - bulletSystem.transform.position).normalized;
             float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
             bulletRotation = Quaternion.Euler(0, 0, angle);
         }
 
         bulletSystem.SpawnBullet(bulletRotation);
+    }
+    private Vector3 FindPositionAttack(Transform enemy){
+        Transform healthBar = enemy.transform.Find("Canvas");
+        if (!healthBar) return enemy.transform.position;
+        Vector3 positionAttack = (healthBar.transform.position + enemy.transform.position) / 2;        
+        return positionAttack;
     }
 
     public void SetIsFire(bool flag)

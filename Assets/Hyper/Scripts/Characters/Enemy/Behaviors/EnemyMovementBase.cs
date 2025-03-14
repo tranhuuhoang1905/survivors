@@ -76,4 +76,12 @@ public class EnemyMovementBase : MonoBehaviour
             monster.Attack();
         }
     }
+    public virtual void Die()
+    {
+        isMovement = false;
+        if (monster)
+        {
+            monster.Die();
+        }
+    }
 }
