@@ -9,6 +9,7 @@ public class EnemyMovementBase : MonoBehaviour
     protected Animator myAnimator;
     private SpriteRenderer spriteRenderer;
     protected bool isMovement = true;
+    protected bool isDie = false;
     protected Transform player;
     protected Monster monster;
     protected GameObject bodyMonster;
@@ -27,10 +28,9 @@ public class EnemyMovementBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (isMovement)
-        {
-            Move();
-        }
+        if (isDie) return;
+        if (!isMovement ) return;
+        Move();
     }
 
     protected virtual void Move()
@@ -42,10 +42,8 @@ public class EnemyMovementBase : MonoBehaviour
 
     protected virtual void FlipEnemyFacing(float directionX)
     {
-        
-        if (directionX != 0 )
-        {
-            if (bodyMonster != null)
+        if (directionX == 0 ) return;
+        if (bodyMonster != null)
             {
                 if (directionX < 0)
                 {
@@ -62,7 +60,6 @@ public class EnemyMovementBase : MonoBehaviour
                 
                 spriteRenderer.flipX = directionX < 0; // Flip chỉ sprite
             }
-        }
     }
 
     public virtual void IsMoving(bool action)
@@ -78,7 +75,7 @@ public class EnemyMovementBase : MonoBehaviour
     }
     public virtual void Die()
     {
-        isMovement = false;
+        isDie = true;
         if (monster)
         {
             monster.Die();

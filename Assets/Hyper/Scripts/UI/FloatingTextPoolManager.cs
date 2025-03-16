@@ -30,11 +30,11 @@ public class FloatingTextPoolManager : MonoBehaviour
         GameEvents.OnShowFloatingText -= ShowDamageText;
     }
 
-    private void ShowDamageText(Vector3 worldPosition, int damage)
+    private void ShowDamageText(Vector3 worldPosition, int damage,FloatingType type)
     {
         GameObject damageTextObj = GetDamageTextFromPool();
         damageTextObj.transform.position = worldPosition;
-        damageTextObj.GetComponent<FloatingText>().Initialize(damage);
+        damageTextObj.GetComponent<FloatingText>().Initialize(damage,type);
     }
 
     private GameObject GetDamageTextFromPool()

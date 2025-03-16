@@ -4,15 +4,31 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public static event Action OnGameOver;
-    public static event Action<Vector3, int> OnShowFloatingText;
+    public static event Action<Vector3, int,FloatingType> OnShowFloatingText;
+    public static event Action<int> OnNomalWareSpawn;
+    public static event Action<int> OnWarWareSpawn;
+    public static event Action OnFinalWareSpawn;
 
     public static void GameOver()
     {
         OnGameOver?.Invoke();
     }
     
-    public static void ShowFloatingText(Vector3 position,int value)
+    public static void ShowFloatingText(Vector3 position,int value,FloatingType type)
     {
-        OnShowFloatingText?.Invoke(position,value);
+        OnShowFloatingText?.Invoke(position,value,type);
+    }
+
+    public static void NomalWareSpawn(int wareId)
+    {
+        OnNomalWareSpawn?.Invoke(wareId);
+    }
+    public static void WarWareSpawn(int wareId)
+    {
+        OnWarWareSpawn?.Invoke(wareId);
+    }
+    public static void FinalWareSpawn()
+    {
+        OnFinalWareSpawn?.Invoke();
     }
 }

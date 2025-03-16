@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   radius: 2
-  speed: 2
+  speed: 5
 --- !u!114 &1780506751953316782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,5 +159,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c0dd2de3c895c4a9cdb31f24597d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   damage: 10

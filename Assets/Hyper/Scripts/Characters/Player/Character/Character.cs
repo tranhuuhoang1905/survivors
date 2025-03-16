@@ -74,7 +74,8 @@ public class Character : MonoBehaviour
             LevelUp();
         }
         exp = Mathf.Min(exp, GetMaxExp());
-
+        
+        GameEvents.ShowFloatingText(transform.position, amount,FloatingType.AddExp);
         ScoreEvent.RaiseExpUpdated(exp, GetMaxExp(), level);
     }
 
@@ -82,6 +83,7 @@ public class Character : MonoBehaviour
     {
         health = Mathf.Min(health + amount,maxHealth);
         
+        GameEvents.ShowFloatingText(transform.position, amount,FloatingType.AddBlood);
         RefreashHealth();
         
     }
@@ -121,6 +123,7 @@ public class Character : MonoBehaviour
     {
         health -= damageAmount;
         healthBar.UpdateSliderBar(health, maxHealth);
+        GameEvents.ShowFloatingText(transform.position, damageAmount,FloatingType.ExceptBlood);
         if (health <= 0)
         {
             Die();

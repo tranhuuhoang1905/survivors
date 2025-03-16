@@ -28,7 +28,7 @@ public abstract class EnemyBase : MonoBehaviour
         health -= damageAmount;
         healthBar.UpdateSliderBar(health, maxHealth);
         Vector3 positionShow = (healthBar.transform.position + transform.position) / 2;
-        GameEvents.ShowFloatingText(positionShow, damageAmount);
+        GameEvents.ShowFloatingText(positionShow, damageAmount,FloatingType.ExceptBlood);
         if (health <= 0)
         {
             isDie = true;

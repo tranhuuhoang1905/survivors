@@ -16,7 +16,7 @@ public class CharacterStats
             attack: 5,
             swordAttack: 3,
             attackSpeed: 1f,
-            swordSpeed: 2f,
+            swordSpeed: 5f,
             moveSpeed: 5f,
             armor: 5,
             health: 100

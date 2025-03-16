@@ -10,7 +10,6 @@ public class CharacterMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Character playerCharacter;
 
-
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
     Animator myAnimator;
@@ -49,7 +48,6 @@ public class CharacterMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        Debug.Log("check onmove");
         if (!isAlive) return;
         moveInput = value.Get<Vector2>();
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) return;

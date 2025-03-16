@@ -27,7 +27,7 @@ public class SwordMovement : MonoBehaviour
         if (parent == null) return; // Đảm bảo có Parent
 
         // Cập nhật góc quay theo thời gian
-        angle += speed * Time.deltaTime; 
+        angle -= speed * Time.deltaTime; 
 
         // Tính toán vị trí mới quanh `Parent`
         float x = Mathf.Cos(angle) * radius;

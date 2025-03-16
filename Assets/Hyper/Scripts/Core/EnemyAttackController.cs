@@ -53,8 +53,8 @@ public class EnemyAttackController : MonoBehaviour
                 }
                 enemy.Attack();
                 Debug.Log("enemy takeDamage");
-            }
-            yield return new WaitForSeconds(0.5f);
+            } 
+            yield return new WaitForSeconds(1f);
         }
     }
 }
