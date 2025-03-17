@@ -70,7 +70,7 @@
     <Compile Include="Assets\Hyper\Scripts\Core\EnemyAttackController.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\GUIColorAttribute.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\LayerManager.cs" />
-    <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\EnemySpawn.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Data\WarEnemy.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\MonsterState.cs" />
     <Compile Include="Assets\Hyper\Scripts\UI\LoadingController.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Enum.cs" />
@@ -106,8 +106,11 @@
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\OnValueChangedAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\PropertyGroupAttribute.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Core\Managers\WaveManager.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HorizontalGroupAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Core\Managers\GameManager.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\FinalWareSpawn.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\NomalWareSpawn.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\EnableIfAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\BoxGroupAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\LabelTextAttribute.cs" />
@@ -121,15 +124,18 @@
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\DisableIfAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\DisableLucidEditorAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\DisableInPlayModeAttribute.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Core\WareType.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\AssetsOnlyAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterMovement.cs" />
     <Compile Include="Assets\Hyper\Scripts\UI\BattleController.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\EditorScripts\CaptureOptions.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HelpBoxIfAttribute.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\WarWareSpawn.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\BulletMovement.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\BlockquoteAttribute.cs" />
     <Compile Include="Assets\FantasyMonsters\Common\Scripts\AnchorManager.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\BoundingPlatform.cs" />
+    <Compile Include="Assets\Hyper\Scripts\UI\BlinkEffect.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HideMonoScript.cs" />
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Sword\Sword.cs" />
     <Compile Include="Assets\Hyper\Scripts\UI\FloatingText.cs" />
@@ -158,6 +164,7 @@
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\MovingPlatform.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Player\Character\CharacterStats.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\GroupAttribute.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Core\FloatingType.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\HorizontalLineAttribute.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\PropertyOrderAttribute.cs" />
     <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\Enemy.cs" />
@@ -168,6 +175,7 @@
     <Compile Include="Assets\Hyper\Scripts\Weapons\Weapons\Bullet\BulletBase.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Platformer - Village Props\Script\Chest.cs" />
     <Compile Include="Assets\Cainos\Third Party\Lucid Editor\Runtime\Attributes\FoldoutGroupAttribute.cs" />
+    <Compile Include="Assets\Hyper\Scripts\Characters\Enemy\WareSpawnBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cainos\Third Party\Lucid Editor\License.txt" />

@@ -2,18 +2,26 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections; // ✅ Cần thêm dòng này
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
     
     public static UIManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI nextWare;
+    [SerializeField] private TextMeshProUGUI nextWareName;
     [SerializeField] private TextMeshProUGUI timeText;
     // [SerializeField] private TextMeshProUGUI timeFinalText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject mainUI;
-    
+    [SerializeField] private GameObject NotifyNextWare;
+    private int nextWareTime = 10;
+    private Coroutine nextWareCoroutine;
+    private BlinkEffect blinkEffect;
+
     [SerializeField] private Slider slider;
     void Awake()
     {
@@ -26,10 +34,26 @@ public class UIManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        blinkEffect = NotifyNextWare.GetComponent<BlinkEffect>();
     }
     void Start(){
         HideAllPopup();
+        RestartNextWareCountdown();
+        
     }
+
+    public void RestartNextWareCountdown()
+    {
+        blinkEffect.StopBlinking();
+        // Nếu coroutine đang chạy, dừng nó trước khi chạy lại
+        if (nextWareCoroutine != null)
+        {
+            StopCoroutine(nextWareCoroutine);
+        }
+
+        nextWareCoroutine = StartCoroutine(NextWareCountdown()); // Khởi chạy lại
+    }
+
     public void HideAllPopup()
     {
         if (winUI) winUI.SetActive(false);
@@ -37,11 +61,26 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 1f;
     }
+
+    private IEnumerator NextWareCountdown()
+    {
+        while (nextWareTime > 0) // Chạy khi nextWareTime lớn hơn 0
+        {
+            yield return new WaitForSeconds(1f); // Đợi 1 giây
+            nextWareTime--; // Giảm thời gian
+            if (nextWareTime<=3)
+            {
+                blinkEffect.StartBlinking();
+            }
+            UpdateNextWareUI(nextWareTime); // Cập nhật giao diện
+        }
+    }
     void OnEnable()
     {
         ScoreEvent.OnScoreUpdated += UpdateScoreUI;
         ScoreEvent.OnTimeUpdated += UpdateTimeUI;
         ScoreEvent.OnExpUpdated += UpdateExpBarUI;
+        GameEvents.OnNextWarWare += SetNextWareTime;
         GameEvents.OnGameOver += ShowWinUI;
     }
 
@@ -50,8 +89,41 @@ public class UIManager : MonoBehaviour
         ScoreEvent.OnScoreUpdated -= UpdateScoreUI;
         ScoreEvent.OnTimeUpdated -= UpdateTimeUI;
         ScoreEvent.OnExpUpdated -= UpdateExpBarUI;
+        GameEvents.OnNextWarWare -= SetNextWareTime;
         GameEvents.OnGameOver -= ShowWinUI;
     }
+
+    public void SetNextWareTime(int newTime, WareType wareType)
+    {
+        switch (wareType)
+        {
+            case WareType.Normal:
+                
+                break;
+            case WareType.War:
+                nextWareName.text = "Next Ware";
+                break;
+            case WareType.Final:
+                nextWareName.text = "The final battle";
+                break;
+            
+            default:
+                break;
+        }
+        nextWareTime = newTime; 
+        RestartNextWareCountdown();
+        UpdateNextWareUI(nextWareTime); 
+    }
+
+    private void UpdateNextWareUI(int nextWareTime)
+    {
+        int minutes = Mathf.FloorToInt(nextWareTime / 60);
+        int seconds = Mathf.FloorToInt(nextWareTime % 60);
+        nextWare.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+    }
+
+    
 
     private void UpdateScoreUI(int newScore)
     {

@@ -105,7 +105,6 @@ public class Character : MonoBehaviour
         health = stats.TotalStats.health;
         RefreashHealth();
         StatsRefresh.Refresh(stats.TotalStats);
-        Debug.Log(JsonUtility.ToJson(stats.TotalStats, true));
     }
 
     private void RefreashHealth()

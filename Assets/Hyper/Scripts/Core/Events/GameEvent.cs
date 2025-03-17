@@ -7,6 +7,7 @@ public class GameEvents : MonoBehaviour
     public static event Action<Vector3, int,FloatingType> OnShowFloatingText;
     public static event Action<int> OnNomalWareSpawn;
     public static event Action<int> OnWarWareSpawn;
+    public static event Action<int,WareType> OnNextWarWare;
     public static event Action OnFinalWareSpawn;
 
     public static void GameOver()
@@ -23,10 +24,17 @@ public class GameEvents : MonoBehaviour
     {
         OnNomalWareSpawn?.Invoke(wareId);
     }
+
     public static void WarWareSpawn(int wareId)
     {
         OnWarWareSpawn?.Invoke(wareId);
     }
+
+    public static void NextWarWare(int wareId,WareType wareType)
+    {
+        OnNextWarWare?.Invoke(wareId,wareType);
+    }
+    
     public static void FinalWareSpawn()
     {
         OnFinalWareSpawn?.Invoke();

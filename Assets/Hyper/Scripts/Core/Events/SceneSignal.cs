@@ -14,7 +14,6 @@ public class SceneSignal : ScriptableObject
 
     public void SceneLoaded()
     {
-        Debug.Log("SceneSignalSO: Scene đã tải xong");
         OnSceneLoaded?.Invoke();
     }
 }

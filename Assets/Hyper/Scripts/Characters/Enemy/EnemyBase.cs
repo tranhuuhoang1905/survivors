@@ -51,16 +51,12 @@ public abstract class EnemyBase : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb)
         {
-            
-            Debug.Log("check Rigidbody ------------------------------------");
             rb.isKinematic = true; // Ngăn enemy bị rơi
             rb.velocity = Vector3.zero; // Dừng mọi chuyển động
         }
         Collider2D col = GetComponent<Collider2D>();
         if (col)
         {
-            
-            Debug.Log("check Collider ------------------------------------");
             col.enabled = false; // Vô hiệu hóa va chạm
         }
     }

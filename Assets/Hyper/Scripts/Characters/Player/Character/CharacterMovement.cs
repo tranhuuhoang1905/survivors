@@ -124,6 +124,5 @@ public class CharacterMovement : MonoBehaviour
     void RunSpeedRefresh( Attr totalStats)
     {
         runSpeed = totalStats.moveSpeed;
-        Debug.Log($"Check update runSpeed: {runSpeed}");
     }
 }

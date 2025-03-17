@@ -6,16 +6,12 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance;
     
-    [System.Serializable]
-    public class Wave
-    {
-        public float time;  // Thời gian xuất hiện wave
-    }
-
-    public List<Wave> listWaves;  // Danh sách các wave
+    public List<int> TimeWars;  // Danh sách các wave
     // public WaveSpawner waveSpawner;  // Tham chiếu đến WaveSpawner
     [SerializeField] private float normalSpawnInterval = 5f;
-    private int wareId = 1;
+    private int nomalWareId = 1;
+    private int warWareId = 1;
+    private bool isFinal = false;
 
     private void Awake()
     {
@@ -24,24 +20,41 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        // StartCoroutine(SpawnWaves());
+        StartCoroutine(WarSpawnWaves());
         StartCoroutine(NormalWaveSpawn());
     }
 
-    // private IEnumerator SpawnWaves()
-    // {
-    //     foreach (var wave in listWaves)
-    //     {
-    //         yield return new WaitForSeconds(wave.time);  // Chờ đến thời gian của wave
-    //     }
-    // }
+    private IEnumerator WarSpawnWaves()
+    {
+        while (!isFinal) 
+        {
+            if (warWareId>TimeWars.Count) isFinal = true;
+            if (!isFinal)
+            {
+                int WarTimeout = TimeWars[warWareId-1];
+
+                GameEvents.NextWarWare(WarTimeout,WareType.War);
+                yield return new WaitForSeconds(WarTimeout); // ⏳ Chờ 10 giây
+                GameEvents.WarWareSpawn(warWareId);
+                warWareId ++;
+            }
+            else
+            {
+                GameEvents.NextWarWare(15,WareType.Final);
+                yield return new WaitForSeconds(15); // ⏳ Chờ 10 giây
+                GameEvents.FinalWareSpawn();
+            }
+            
+        }
+    }
+
     private IEnumerator NormalWaveSpawn()
     {
         while (true) // 🔄 Chạy vô hạn, spawn normal wave mỗi 10 giây
         {
             yield return new WaitForSeconds(normalSpawnInterval); // ⏳ Chờ 10 giây
-            GameEvents.NomalWareSpawn(wareId);
-            wareId ++;
+            GameEvents.NomalWareSpawn(nomalWareId);
+            nomalWareId ++;
         }
     }
 }

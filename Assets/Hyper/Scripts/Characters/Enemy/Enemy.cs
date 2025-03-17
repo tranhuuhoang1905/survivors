@@ -65,7 +65,6 @@ public class Enemy : EnemyBase
     // 🕒 Coroutine để delay việc xóa enemy
     private IEnumerator DestroyAfterDelay(float delay)
     {
-        Debug.Log("check Delay ------------------------------------");
         yield return new WaitForSeconds(delay); // Chờ 1 giây
         Destroy(gameObject); // Xóa enemy khỏi scene
     }
