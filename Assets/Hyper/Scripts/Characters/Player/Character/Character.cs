@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     private CharacterMovement characterMovement;
     private CharacterSwordHandler characterSwordHandler;
     private CharacterFireHandler characterFireHandler;
+    private IHitEffect hitEffect;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class Character : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         characterSwordHandler = GetComponent<CharacterSwordHandler>();
         characterFireHandler= GetComponent<CharacterFireHandler>();
+        hitEffect = GetComponent<IHitEffect>();
     }
 
     void Start()
@@ -123,6 +125,10 @@ public class Character : MonoBehaviour
         health -= damageAmount;
         healthBar.UpdateSliderBar(health, maxHealth);
         GameEvents.ShowFloatingText(transform.position, damageAmount,FloatingType.ExceptBlood);
+        if (hitEffect != null)
+        {
+            hitEffect.ApplyHitEffect();
+        }
         if (health <= 0)
         {
             Die();

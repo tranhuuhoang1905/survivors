@@ -9,6 +9,7 @@ public class GameEvents : MonoBehaviour
     public static event Action<int> OnWarWareSpawn;
     public static event Action<int,WareType> OnNextWarWare;
     public static event Action OnFinalWareSpawn;
+    public static event Action<TutorialType> OnShowTutorialGame;
 
     public static void GameOver()
     {
@@ -38,5 +39,11 @@ public class GameEvents : MonoBehaviour
     public static void FinalWareSpawn()
     {
         OnFinalWareSpawn?.Invoke();
+    }
+
+    public static void ShowTutorialGame(TutorialType type)
+    {
+        OnShowTutorialGame?.Invoke(type);
+        
     }
 }

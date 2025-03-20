@@ -21,6 +21,7 @@ public class EnemyCircleSpawner : MonoBehaviour
 
             Vector3 spawnPosition = new Vector3(x, y, 0);
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            
         }
     }
 }

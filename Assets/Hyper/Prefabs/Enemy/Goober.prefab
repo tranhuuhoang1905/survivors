@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2307945646672754238}
   - component: {fileID: 4127987636149898531}
   - component: {fileID: 5173785321300649800}
+  - component: {fileID: 942828003584232461}
   m_Layer: 6
   m_Name: Goober
   m_TagString: Enemy
@@ -309,12 +310,10 @@ MonoBehaviour:
   health: 30
   maxHealth: 30
   damage: 3
-  score: 1
-  scoreType: 1
+  itemBonus: {fileID: 9075149547361245957, guid: 81175292eb7ad6641bda4a011ff7e3e2, type: 3}
   scoreEntry:
     scoreType: 1
     value: 1
-  itemBonus: {fileID: 9075149547361245957, guid: 81175292eb7ad6641bda4a011ff7e3e2, type: 3}
 --- !u!114 &5173785321300649800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +327,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+--- !u!114 &942828003584232461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924646293371146209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7bd6eecc8b22348ae2f370552cc946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: b33798bbfbef59f499f58faebf2224f9, type: 2}
+  existenceTime: 0.2
 --- !u!1001 &7518356020246426897
 PrefabInstance:
   m_ObjectHideFlags: 0

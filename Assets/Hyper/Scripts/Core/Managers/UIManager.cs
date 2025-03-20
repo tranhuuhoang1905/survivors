@@ -97,9 +97,9 @@ public class UIManager : MonoBehaviour
     {
         switch (wareType)
         {
-            case WareType.Normal:
+            // case WareType.Normal:
                 
-                break;
+            //     break;
             case WareType.War:
                 nextWareName.text = "Next Ware";
                 break;
@@ -175,4 +175,5 @@ public class UIManager : MonoBehaviour
         }
         Time.timeScale = 0f;
     }
+    
 }

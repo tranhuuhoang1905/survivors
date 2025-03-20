@@ -14,6 +14,14 @@ public class BattleController : MonoBehaviour
             AudioManager.Instance.PlayMusic(BattleScenebackgroundMusic);
         }
         sceneSignal.SceneLoaded();
+        StartCoroutine(DelayShowTutorial());
+        
+    }
+
+    private IEnumerator DelayShowTutorial()
+    {
+        yield return new WaitForSeconds(1f); // ⏳ Delay 1 giây
+        GameEvents.ShowTutorialGame(TutorialType.StartGame);
     }
 
 

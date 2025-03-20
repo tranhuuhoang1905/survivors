@@ -43,7 +43,6 @@ public class CharacterMovement : MonoBehaviour
         Run();
         FlipSprite();
         ClimbLadder();
-        // Die();
     }
 
     void OnMove(InputValue value)
@@ -74,7 +73,6 @@ public class CharacterMovement : MonoBehaviour
         {
             moveDirection.Normalize();
         }
-
         // Di chuyển với tốc độ 5px/s
         transform.Translate(moveDirection * runSpeed * Time.deltaTime);
 

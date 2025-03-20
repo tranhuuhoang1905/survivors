@@ -80,7 +80,8 @@ public class CharacterFireHandler : MonoBehaviour
     private Vector3 FindPositionAttack(Transform enemy){
         Transform healthBar = enemy.transform.Find("Canvas");
         if (!healthBar) return enemy.transform.position;
-        Vector3 positionAttack = (healthBar.transform.position + enemy.transform.position) / 2;        
+        Vector3 positionAttack = enemy.transform.position;
+        positionAttack.y = (healthBar.transform.position.y + enemy.transform.position.y) / 2;        
         return positionAttack;
     }
 

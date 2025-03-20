@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   damage: 2
+  hitEffect: {fileID: 8762405910555896786, guid: fcb74f28d107e284e80af037bfec14ca, type: 3}
 --- !u!114 &2835301556849360001
 MonoBehaviour:
   m_ObjectHideFlags: 0

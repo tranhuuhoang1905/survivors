@@ -43,6 +43,8 @@ public class WaveManager : MonoBehaviour
                 GameEvents.NextWarWare(15,WareType.Final);
                 yield return new WaitForSeconds(15); // ⏳ Chờ 10 giây
                 GameEvents.FinalWareSpawn();
+                yield return new WaitForSeconds(1);
+                GameEvents.ShowTutorialGame(TutorialType.FinalWar);
             }
             
         }

@@ -786,12 +786,14 @@ GameObject:
   - component: {fileID: 2876898131552103244}
   - component: {fileID: 2781750379099283639}
   - component: {fileID: 140960962417409990}
+  - component: {fileID: 2317878446950723735}
   - component: {fileID: 7846876269626945943}
   - component: {fileID: 2343278537093487795}
   - component: {fileID: 5532337801438174509}
   - component: {fileID: 4560117747252063536}
   - component: {fileID: 4659752343788286044}
   - component: {fileID: 120992533510109049}
+  - component: {fileID: 7913308017205045369}
   m_Layer: 6
   m_Name: Monkey
   m_TagString: Enemy
@@ -876,6 +878,20 @@ MonoBehaviour:
   - {fileID: 834246428433284644}
   - {fileID: 6244007185809753815}
   - {fileID: 1934721828613558639}
+--- !u!114 &2317878446950723735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861463478366300242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7bd6eecc8b22348ae2f370552cc946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: b33798bbfbef59f499f58faebf2224f9, type: 2}
+  existenceTime: 0.2
 --- !u!210 &7846876269626945943
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -972,12 +988,10 @@ MonoBehaviour:
   health: 300
   maxHealth: 300
   damage: 30
-  score: 5
-  scoreType: 1
+  itemBonus: {fileID: 2420706852529584771, guid: a2e9a6294de0d9249ab427378e71f011, type: 3}
   scoreEntry:
     scoreType: 1
     value: 1
-  itemBonus: {fileID: 2420706852529584771, guid: a2e9a6294de0d9249ab427378e71f011, type: 3}
 --- !u!70 &120992533510109049
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1013,6 +1027,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 1.4}
   m_Size: {x: 6.62, y: 1}
   m_Direction: 0
+--- !u!50 &7913308017205045369
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8861463478366300242}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &4621283397812783002
 PrefabInstance:
   m_ObjectHideFlags: 0

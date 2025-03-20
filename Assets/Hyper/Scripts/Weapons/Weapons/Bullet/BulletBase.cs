@@ -5,8 +5,9 @@ public abstract class BulletBase : MonoBehaviour
     [SerializeField] protected float bulletSpeed = 10f;
     [SerializeField] protected int damage = 1;
 
-    private BulletSoundManager soundManager;
+    protected BulletSoundManager soundManager;
     private BulletMovement movement;
+    [SerializeField] private GameObject hitEffect;
 
     public void Initialize(BulletSoundManager soundManager, BulletMovement movement)
     {
@@ -33,14 +34,26 @@ public abstract class BulletBase : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
             if (enemy != null)
             {
+                HandleHitEffect(other);
                 soundManager?.PlayHitSound();
                 enemy.TakeDamage(damage);
             }
         }
     }
+
+    protected virtual void HandleHitEffect(Collision2D taget)
+    {
+        if ( hitEffect !=null)
+        {
+            GameObject newEffect = Instantiate(hitEffect, taget.gameObject.transform.position, Quaternion.identity);
+        }
+    }
+    
+    
 
     public virtual void SetDamage(int newDamage)
     {

@@ -697,10 +697,12 @@ GameObject:
   - component: {fileID: 5354797382639670637}
   - component: {fileID: 7850945920068337465}
   - component: {fileID: 1593515230406190267}
+  - component: {fileID: 285673635418661071}
   - component: {fileID: 719753557631099517}
   - component: {fileID: 48925094178064569}
   - component: {fileID: 8381352691336154485}
   - component: {fileID: 7731015977749354310}
+  - component: {fileID: 6287387402180695139}
   m_Layer: 6
   m_Name: Troll
   m_TagString: Enemy
@@ -819,6 +821,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &285673635418661071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872225521961829978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7bd6eecc8b22348ae2f370552cc946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMaterial: {fileID: 2100000, guid: b33798bbfbef59f499f58faebf2224f9, type: 2}
+  existenceTime: 0.2
 --- !u!70 &719753557631099517
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -917,12 +933,37 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   damage: 10
-  score: 1
-  scoreType: 1
+  itemBonus: {fileID: 3818407301738674324, guid: e2c5395901398904eb004686dafc396f, type: 3}
   scoreEntry:
     scoreType: 1
     value: 1
-  itemBonus: {fileID: 1070800130773634259, guid: 05036e8992dc5c6478cdbbf64ed95a68, type: 3}
+--- !u!50 &6287387402180695139
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872225521961829978}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &7232953444112384030
 GameObject:
   m_ObjectHideFlags: 0

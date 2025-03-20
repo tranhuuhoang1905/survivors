@@ -16,6 +16,11 @@ public class WareSpawnBase : MonoBehaviour
 
     }
 
+    protected virtual void SpawnAction()
+    {
+        
+    }
+
     protected virtual void SpawnAction(int wareId)
     {
         

@@ -8,10 +8,12 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected int damage = 10;
     private bool isDie = false;
     protected SliderBar healthBar;
+    private IHitEffect hitEffect;
 
     protected virtual void Awake()
     {
         healthBar = GetComponentInChildren<SliderBar>();
+        hitEffect = GetComponent<IHitEffect>();
     }
     void Start()
     {
@@ -29,6 +31,10 @@ public abstract class EnemyBase : MonoBehaviour
         healthBar.UpdateSliderBar(health, maxHealth);
         Vector3 positionShow = (healthBar.transform.position + transform.position) / 2;
         GameEvents.ShowFloatingText(positionShow, damageAmount,FloatingType.ExceptBlood);
+        if (hitEffect != null)
+        {
+            hitEffect.ApplyHitEffect();
+        }
         if (health <= 0)
         {
             isDie = true;
