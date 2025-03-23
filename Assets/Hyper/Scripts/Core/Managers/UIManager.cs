@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour
     public void HideAllPopup()
     {
         if (winUI) winUI.SetActive(false);
+        
         if (mainUI) mainUI.SetActive(true);
 
         Time.timeScale = 1f;
@@ -175,5 +176,6 @@ public class UIManager : MonoBehaviour
         }
         Time.timeScale = 0f;
     }
+
     
 }

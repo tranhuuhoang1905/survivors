@@ -3,11 +3,12 @@ using UnityEngine;
 public class AutoDestroyEffect : MonoBehaviour
 {
     private ParticleSystem ps;
+    [SerializeField] private float countdown = 1f;
 
     void Start()
     {
         ps = GetComponent<ParticleSystem>(); // Lấy Particle System trên object
-        Debug.Log($"check ps************************: {ps!= null}");
+        Destroy(gameObject, countdown);
     }
 
     void Update()

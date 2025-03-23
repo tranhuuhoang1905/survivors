@@ -10,7 +10,6 @@ public class Bullet : BulletBase
         BulletMovement movement = GetComponent<BulletMovement>();
         Initialize(soundManager, movement);
     }
-
     protected override void HandleCollision(Collision2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))

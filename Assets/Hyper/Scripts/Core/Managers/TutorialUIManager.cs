@@ -84,7 +84,7 @@ public class TutorialUIManager : MonoBehaviour
         }
     }
 
-    public void RunTutorial(string tutorial)
+    private void RunTutorial(string tutorial)
     {
         if (tutorialUI) 
         {

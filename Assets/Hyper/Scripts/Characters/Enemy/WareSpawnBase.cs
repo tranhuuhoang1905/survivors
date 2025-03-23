@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WareSpawnBase : MonoBehaviour
 {
+    
+    [SerializeField] protected GameObject spawnEffectPrefab;
     public Transform enemyPool;
     [SerializeField] private float spawnRadius = 2f; // 🔥 Bán kính random vị trí spawn
     void Start()
@@ -31,5 +33,6 @@ public class WareSpawnBase : MonoBehaviour
         Vector2 randomCircle = Random.insideUnitCircle * spawnRadius; // 🔥 Random trong vòng tròn bán kính `spawnRadius`
         return new Vector3(position.x + randomCircle.x, position.y+ randomCircle.y, position.z + randomCircle.y);
     }
+    
 
 }

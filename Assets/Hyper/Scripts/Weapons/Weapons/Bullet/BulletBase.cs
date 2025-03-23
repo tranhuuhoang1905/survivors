@@ -8,7 +8,12 @@ public abstract class BulletBase : MonoBehaviour
     protected BulletSoundManager soundManager;
     private BulletMovement movement;
     [SerializeField] private GameObject hitEffect;
+    
 
+    // void Start()
+    // {
+    //     HandleAura();
+    // }
     public void Initialize(BulletSoundManager soundManager, BulletMovement movement)
     {
         this.soundManager = soundManager;
@@ -44,6 +49,8 @@ public abstract class BulletBase : MonoBehaviour
             }
         }
     }
+
+    
 
     protected virtual void HandleHitEffect(Collision2D taget)
     {

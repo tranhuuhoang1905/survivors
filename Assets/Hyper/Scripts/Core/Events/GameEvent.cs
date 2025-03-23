@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public static event Action OnGameOver;
+    public static event Action OnLevelUp;
     public static event Action<Vector3, int,FloatingType> OnShowFloatingText;
     public static event Action<int> OnNomalWareSpawn;
     public static event Action<int> OnWarWareSpawn;
@@ -14,6 +15,11 @@ public class GameEvents : MonoBehaviour
     public static void GameOver()
     {
         OnGameOver?.Invoke();
+    }
+
+    public static void LevelUp()
+    {
+        OnLevelUp?.Invoke();
     }
     
     public static void ShowFloatingText(Vector3 position,int value,FloatingType type)

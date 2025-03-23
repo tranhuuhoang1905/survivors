@@ -8,6 +8,9 @@ public class Enemy : EnemyBase
     private EnemyMovementBase enemyMovement;
     [SerializeField] GameObject itemBonus;
     [SerializeField] ScoreEntry scoreEntry;
+    private float attackCooldown = 1f; // Thời gian delay giữa các đòn tấn công
+    private float lastAttackTime = 0;
+    private Coroutine attackRoutine;
 
     void Start()
     {
@@ -19,8 +22,8 @@ public class Enemy : EnemyBase
         if (other.CompareTag("Player"))
         {
             player = other.gameObject;
-            EnemyAttackController.Instance.RegisterEnemy(this);
             enemyMovement.IsMoving(false);
+            attackRoutine = StartCoroutine(AttackCoroutine());
         }
     }
 
@@ -28,13 +31,42 @@ public class Enemy : EnemyBase
     {
         if (other.CompareTag("Player"))
         {
-            EnemyAttackController.Instance.UnregisterEnemy(this);
+            // EnemyAttackController.Instance.UnregisterEnemy(this);
             enemyMovement.IsMoving(true);
+            if (attackRoutine != null)
+            {
+                StopCoroutine(attackRoutine);
+                attackRoutine = null; // Ensure coroutine reference is cleared
+            }
+            player = null;
         }
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        // Nếu kẻ địch vừa tấn công xong, chờ đủ thời gian hồi chiêu
+        float waitTime = lastAttackTime + attackCooldown - Time.time;
+        
+            Debug.Log($"check waitTime:{lastAttackTime}, attackCooldown:{attackCooldown},Time.time:{Time.time}");
+        if (waitTime > 0)
+        {
+            Debug.Log($"check waitTime:{waitTime}");
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        while (player != null)
+        {
+            lastAttackTime = Time.time; 
+            Attack();
+            yield return new WaitForSeconds(attackCooldown);
+        }
+        attackRoutine = null;
     }
 
     public void Attack()
     {
+        player.GetComponent<Character>().TakeDamage(GetDamage());
+        Debug.Log($"check:{Time.time}");
         enemyMovement.Attack();
     }
     public int GetDamage()

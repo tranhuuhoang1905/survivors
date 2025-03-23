@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSwordHandler : MonoBehaviour
+public class CharacterSwordHandler : CharacterWeaponHandler
 {
-    [SerializeField] int levelSword = 0;
     private SwordSystem swordSystem;
     
     void Start()
     {
         swordSystem = GetComponent<SwordSystem>();
-        UpdateSwordInventory();
+        UpdateInventory();
     }
-    public void LevelUp(int addLevel)
+    public override void LevelUp(int addLevel)
     {
-        levelSword += addLevel;
-        UpdateSwordInventory();
+        level += addLevel;
+        UpdateInventory();
     }
-    // Cập nhật số lượng kiếm trong mảng dựa vào level
-    private void UpdateSwordInventory()
+
+    private void UpdateInventory()
     {
         if (!swordSystem) return;
-       swordSystem.UpdateSwordInventory(levelSword);
+        swordSystem.UpdateSwordInventory(level);
     }
     
 }

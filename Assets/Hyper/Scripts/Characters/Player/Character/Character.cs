@@ -10,8 +10,8 @@ public class Character : MonoBehaviour
     public int exp = 0;
     private int health = 100;
     private int maxHealth = 100;
-    private int[] expToLevelUp = { 0, 10, 20, 35, 50, 70, 95, 120, 150, 185, 225, 375,500,500,500,500,500,500,500,500,500 };
-    private CharacterStats stats;
+    private int[] expToLevelUp = { 0, 5, 10, 20, 30, 50, 65, 80, 100, 120, 245, 175,200,230,260,290,330,370,420,460,500 };
+    public CharacterStats stats;
     protected SliderBar healthBar;
     private CharacterMovement characterMovement;
     private CharacterSwordHandler characterSwordHandler;
@@ -51,20 +51,19 @@ public class Character : MonoBehaviour
     void LoadWeapon(){
         
         int playerType = GameManager.Instance.GetPlayerType();
-        characterFireHandler.SetIsFire(true);
-        AddSwordLevel(1);
-        // switch (playerType)
-        // {
-        //     case 1:
-        //         characterFireHandler.SetIsFire(true);
-        //         break;
-        //     case 2:
-        //         AddSwordLevel(1);
-        //         break;
+        
+        switch (playerType)
+        {
+            case 1:
+                AddFireLevel(1);
+                break;
+            case 2:
+                AddSwordLevel(1);
+                break;
             
-        //     default:
-        //         break;
-        // }
+            default:
+                break;
+        }
     }
 
     public void AddExp(int amount)
@@ -91,8 +90,11 @@ public class Character : MonoBehaviour
     }
     public void AddSwordLevel(int amount)
     {
-        characterSwordHandler.LevelUp(amount);
-        
+        characterSwordHandler.LevelUp(amount); 
+    }
+    public void AddFireLevel(int amount)
+    {
+        characterFireHandler.LevelUp(amount); 
     }
 
     public int GetMaxExp()
@@ -107,6 +109,14 @@ public class Character : MonoBehaviour
         health = stats.TotalStats.health;
         RefreashHealth();
         StatsRefresh.Refresh(stats.TotalStats);
+        
+        StartCoroutine(DelayShowLevelUpPopup());
+    }
+
+    private IEnumerator DelayShowLevelUpPopup()
+    {
+        yield return new WaitForSeconds(0.5f); // ⏳ Delay 1 giây
+        GameEvents.LevelUp();
     }
 
     private void RefreashHealth()
@@ -138,7 +148,14 @@ public class Character : MonoBehaviour
         
         return stats.TotalStats;
     }
-
+    public CharacterWeaponHandler GetCharacterSwordHandle(){
+        
+        return characterSwordHandler;
+    }
+    public CharacterWeaponHandler GetCharacterFireHandler(){
+        
+        return characterFireHandler;
+    }
     private void Die()
     {
         characterMovement.Die();
