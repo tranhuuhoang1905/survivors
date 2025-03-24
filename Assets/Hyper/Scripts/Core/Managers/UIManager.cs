@@ -21,6 +21,11 @@ public class UIManager : MonoBehaviour
     private int nextWareTime = 10;
     private Coroutine nextWareCoroutine;
     private BlinkEffect blinkEffect;
+    private Dictionary<WareType, string> wareNames = new Dictionary<WareType, string>
+    {
+        { WareType.War, "Next Ware" },
+        { WareType.Final, "The final battle" }
+    };
 
     [SerializeField] private Slider slider;
     void Awake()
@@ -96,20 +101,9 @@ public class UIManager : MonoBehaviour
 
     public void SetNextWareTime(int newTime, WareType wareType)
     {
-        switch (wareType)
+        if (wareNames.TryGetValue(wareType, out string name))
         {
-            // case WareType.Normal:
-                
-            //     break;
-            case WareType.War:
-                nextWareName.text = "Next Ware";
-                break;
-            case WareType.Final:
-                nextWareName.text = "The final battle";
-                break;
-            
-            default:
-                break;
+            nextWareName.text = name;
         }
         nextWareTime = newTime; 
         RestartNextWareCountdown();
@@ -171,8 +165,6 @@ public class UIManager : MonoBehaviour
             TextMeshProUGUI scoreFinalText = winUI.transform.Find("Popup/ScorePanel/Score/ScoreValue")?.GetComponent<TextMeshProUGUI>();
             if(scoreFinalText) scoreFinalText.text = scoreText.text;
             if(timeFinalText) timeFinalText.text = timeText.text;
-            
-            
         }
         Time.timeScale = 0f;
     }

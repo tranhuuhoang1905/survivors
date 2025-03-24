@@ -46,11 +46,8 @@ public class Enemy : EnemyBase
     {
         // Nếu kẻ địch vừa tấn công xong, chờ đủ thời gian hồi chiêu
         float waitTime = lastAttackTime + attackCooldown - Time.time;
-        
-            Debug.Log($"check waitTime:{lastAttackTime}, attackCooldown:{attackCooldown},Time.time:{Time.time}");
         if (waitTime > 0)
         {
-            Debug.Log($"check waitTime:{waitTime}");
             yield return new WaitForSeconds(waitTime);
         }
 
@@ -66,7 +63,6 @@ public class Enemy : EnemyBase
     public void Attack()
     {
         player.GetComponent<Character>().TakeDamage(GetDamage());
-        Debug.Log($"check:{Time.time}");
         enemyMovement.Attack();
     }
     public int GetDamage()

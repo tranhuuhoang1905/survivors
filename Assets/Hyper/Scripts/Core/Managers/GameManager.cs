@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private int playerType = 1;
     private int score = 0;
     private int timeSeconds = 0;
+    private Character character;
     
-    protected SliderBar healthBar;
     public SceneSignal sceneSignal;
 
 
@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         ScoreEvent.OnAddScore += AddToScore; // Đăng ký sự kiện
         
-        sceneSignal.OnSceneLoaded.AddListener(RefreshUI);
+        if (sceneSignal != null)
+        {
+            sceneSignal.OnSceneLoaded.AddListener(RefreshUI);
+        }
+        character = FindObjectOfType<Character>();
         
     }
 
@@ -42,39 +46,38 @@ public class GameManager : MonoBehaviour
     {
         // Unsubscribe when the object is destroyed
         ScoreEvent.OnAddScore -= AddToScore;
-        sceneSignal.OnSceneLoaded.RemoveListener(RefreshUI);
+        if (sceneSignal != null)
+        {
+            sceneSignal.OnSceneLoaded.RemoveListener(RefreshUI);
+        }
     }
 
 
     public void AddToScore(ScoreEntry scoreEntry)
     {
-        switch (scoreEntry.scoreType)
+        if (character != null)
         {
-            case ScoreType.Score:
-                score += scoreEntry.value; // Cộng vào điểm số
-                ScoreEvent.RaiseScoreUpdated(score);
-                break;
-            case ScoreType.Experience:
-                if (Character.Instance != null)
-                {
-                    Character.Instance.AddExp(scoreEntry.value);
-                }
-                break;
-            case ScoreType.Health:
-                if (Character.Instance != null)
-                {
-                    Character.Instance.AddHealth(scoreEntry.value);
-                }
-                break;
-            case ScoreType.SwordUpgrade:
-                if (Character.Instance != null)
-                {
-                    Character.Instance.AddSwordLevel(scoreEntry.value);
-                }
-                break;
-            default:
-                break;
+            switch (scoreEntry.scoreType)
+            {
+                case ScoreType.Score:
+                    score += scoreEntry.value; // Cộng vào điểm số
+                    ScoreEvent.RaiseScoreUpdated(score);
+                    break;
+                case ScoreType.Experience:
+                    character.AddExp(scoreEntry.value);
+                    break;
+                case ScoreType.Health:
+                    character.AddHealth(scoreEntry.value);
+                    break;
+                case ScoreType.SwordUpgrade:
+                    character.AddSwordLevel(scoreEntry.value);
+                    break;
+                default:
+                    break;
+            }
+
         }
+        
     }
 
     private IEnumerator startTime()
@@ -96,11 +99,11 @@ public class GameManager : MonoBehaviour
     public void RefreshUI()
     {
         ScoreEvent.RaiseScoreUpdated(score);
-        if (Character.Instance != null)
+        if (character != null)
         {
-            int exp = Character.Instance.exp;
-            int level = Character.Instance.level;
-            int maxExp = Character.Instance.GetMaxExp();
+            int exp = character.exp;
+            int level = character.level;
+            int maxExp = character.GetMaxExp();
             ScoreEvent.RaiseExpUpdated(exp, maxExp, level);
         }
     }

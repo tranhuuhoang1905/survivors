@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     private CharacterSwordHandler characterSwordHandler;
     private CharacterFireHandler characterFireHandler;
     private IHitEffect hitEffect;
+    [SerializeField] private GameObject levelUpEffect;
 
     void Awake()
     {
@@ -109,13 +110,17 @@ public class Character : MonoBehaviour
         health = stats.TotalStats.health;
         RefreashHealth();
         StatsRefresh.Refresh(stats.TotalStats);
-        
+        if (levelUpEffect!= null)
+        {
+            GameObject effectInstance = Instantiate(levelUpEffect, transform.position, Quaternion.identity);
+            effectInstance.transform.SetParent(transform,true);
+        }
         StartCoroutine(DelayShowLevelUpPopup());
     }
 
     private IEnumerator DelayShowLevelUpPopup()
     {
-        yield return new WaitForSeconds(0.5f); // ⏳ Delay 1 giây
+        yield return new WaitForSeconds(2f); // ⏳ Delay 1 giây
         GameEvents.LevelUp();
     }
 
