@@ -86,7 +86,8 @@ public class CharacterFireHandler : CharacterWeaponHandler
 
         float spreadAngle = 10f; // Góc lệch giữa các viên đạn
         float startAngle = baseAngle - ((bulletsToShoot - 1) * spreadAngle / 2); // Cân bằng góc bắn
- 
+        
+        if (bulletsToShoot <1) return;
         spawnAuraEffect();
         for (int i = 0; i < bulletsToShoot; i++)
         {

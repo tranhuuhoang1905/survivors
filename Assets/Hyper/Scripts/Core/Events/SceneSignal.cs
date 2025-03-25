@@ -9,6 +9,7 @@ public class SceneSignal : ScriptableObject
 
     public void LoadScene(string sceneName)
     {
+        Debug.Log($"check LoadScene {sceneName}");
         OnLoadScene?.Invoke(sceneName);
     }
 

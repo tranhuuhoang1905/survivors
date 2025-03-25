@@ -33,12 +33,14 @@ public class BattleSelectController : MonoBehaviour
     }
     public void OnBattleSelectButtonPressed(int level)
     {
+        Debug.Log("check selsect");
         index = level;
         GameManager.Instance.SetPlayerType(index);
         ChangerSelected(index);
     }
     public void OnBattleGotoButtonPressed()
     {
+        Debug.Log("check OnBattleGotoButtonPressed selsect");
         sceneSignal.LoadScene("BattleScene");
     }
     

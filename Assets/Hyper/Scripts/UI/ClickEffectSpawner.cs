@@ -11,22 +11,9 @@ public class ClickEffectSpawner : MonoBehaviour
     public static ClickEffectSpawner Instance { get; private set; }
     public InputActionReference clickAction; // Kéo "Click" từ Input System vào Inspector
     [SerializeField] private GameObject clickEffect;
-    public Transform canvasTransform;
 
     private Camera mainCamera;
     
-    private void Awake()
-    {
-        // Kiểm tra nếu đã có instance khác, thì hủy object mới để đảm bảo chỉ có một instance duy nhất
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject); // Giữ lại khi chuyển Scene
-    }
 
     private void Start()
     {
@@ -53,14 +40,22 @@ public class ClickEffectSpawner : MonoBehaviour
 
     private void OnClick(InputAction.CallbackContext context)
     {
-        Debug.Log("Click được phát hiện!");
-        if (!context.performed) return;
-        if (clickEffect!= null)
+        if (context.ReadValue<float>() != 1) return;
+        if (clickEffect == null) return;
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f));
+        clickEffect.transform.position = worldPosition;
+        RestartEffect();
+    }
+
+    private void RestartEffect()
+    {
+        ParticleSystem ps = clickEffect.GetComponent<ParticleSystem>();
+        if (ps != null)
         {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f));
-            GameObject effectInstance = Instantiate(clickEffect, worldPosition, Quaternion.identity);
-            // effectInstance.transform.SetParent(canvasTransform,true);
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // Dừng hoàn toàn
+            ps.Play(); // Chạy lại hiệu ứng
         }
     }
+
 }
