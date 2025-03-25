@@ -11,6 +11,7 @@ public class ClickEffectSpawner : MonoBehaviour
     public static ClickEffectSpawner Instance { get; private set; }
     public InputActionReference clickAction; // Kéo "Click" từ Input System vào Inspector
     [SerializeField] private GameObject clickEffect;
+    public Transform canvasTransform;
 
     private Camera mainCamera;
     
@@ -53,12 +54,13 @@ public class ClickEffectSpawner : MonoBehaviour
     private void OnClick(InputAction.CallbackContext context)
     {
         Debug.Log("Click được phát hiện!");
+        if (!context.performed) return;
         if (clickEffect!= null)
         {
             Vector2 mousePosition = Mouse.current.position.ReadValue();
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f));
             GameObject effectInstance = Instantiate(clickEffect, worldPosition, Quaternion.identity);
-            effectInstance.transform.SetParent(transform,true);
+            // effectInstance.transform.SetParent(canvasTransform,true);
         }
     }
 }

@@ -37,6 +37,7 @@ public class CharacterMovement : MonoBehaviour
         StatsRefresh.OnRefresh -= RunSpeedRefresh; // Đăng ký sự kiện
         
     }
+    
     void Update()
     {
         if (!isAlive) return;
