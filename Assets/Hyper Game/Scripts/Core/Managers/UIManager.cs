@@ -147,7 +147,6 @@ public class UIManager : MonoBehaviour
             fExpPercentage = Mathf.Round(fExpPercentage * 100f) / 100f;
         }
         sliderValue = fExpPercentage;
-        // slider.value = fExpPercentage;
     }
     public void OnExitButtonReStartGame()
     {
