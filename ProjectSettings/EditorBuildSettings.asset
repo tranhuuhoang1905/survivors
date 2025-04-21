@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Hyper/Scenes/StartScene.unity
+    path: Assets/Hyper Game/Scenes/StartScene.unity
     guid: 14109009c996ef942aa745332f087949
   - enabled: 1
-    path: Assets/Hyper/Scenes/BattleSelectScene.unity
+    path: Assets/Hyper Game/Scenes/BattleSelectScene.unity
     guid: 923647c67cbbbbf48a6e5529e0ca7530
   - enabled: 1
-    path: Assets/Hyper/Scenes/LoadingScene.unity
+    path: Assets/Hyper Game/Scenes/LoadingScene.unity
     guid: 14935904d004c5b48981b9cb45e933c2
   - enabled: 1
-    path: Assets/Hyper/Scenes/BattleScene.unity
+    path: Assets/Hyper Game/Scenes/BattleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
