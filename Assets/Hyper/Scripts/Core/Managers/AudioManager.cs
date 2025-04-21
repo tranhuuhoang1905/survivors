@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Không hủy khi chuyển Scene
+            // DontDestroyOnLoad(gameObject); // Không hủy khi chuyển Scene
         }
         else
         {

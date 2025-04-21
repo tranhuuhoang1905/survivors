@@ -9,16 +9,20 @@ public class CharacterSkill : MonoBehaviour
     [SerializeField] private float skillRadius = 5f;  // Phạm vi ảnh hưởng
     [SerializeField] private int damagePerSecond = 50;
     
-    [SerializeField] private float skillDuration = 3.1f;
+    [SerializeField] private float skillDuration = 2.1f;
+    private bool isUsingSkill = false;
     
 
     public void ActionSkill_1()
     {
-        // Tạo hiệu ứng skill tại vị trí nhân vật
-        GameObject effectInstance = Instantiate(prefabEffect, transform.position, Quaternion.identity);
-        effectInstance.transform.SetParent(transform,true);
-        Destroy(effectInstance, skillDuration); // Hủy hiệu ứng sau thời gian tồn tại
-
+        // // Tạo hiệu ứng skill tại vị trí nhân vật
+        // GameObject effectInstance = Instantiate(prefabEffect, transform.position, Quaternion.identity);
+        // effectInstance.transform.SetParent(transform,true);
+        // Destroy(effectInstance, skillDuration); // Hủy hiệu ứng sau thời gian tồn tại
+        if (isUsingSkill) return ;
+        prefabEffect.SetActive(true);
+        isUsingSkill = true;
+        StartCoroutine(DisableEffectAfterDelay(prefabEffect, skillDuration));
         // Bắt đầu Coroutine gây sát thương
         StartCoroutine(ApplyDamageOverTime());
     }
@@ -51,6 +55,13 @@ public class CharacterSkill : MonoBehaviour
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
         }
+    }
+
+    private IEnumerator DisableEffectAfterDelay(GameObject effect, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isUsingSkill = false;
+        effect.SetActive(false);
     }
 
     // Debug phạm vi skill trong Scene

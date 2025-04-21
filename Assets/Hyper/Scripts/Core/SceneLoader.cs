@@ -23,7 +23,7 @@ public class SceneLoader : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {

@@ -14,7 +14,8 @@ public class BattleController : MonoBehaviour
             AudioManager.Instance.PlayMusic(BattleScenebackgroundMusic);
         }
         sceneSignal.SceneLoaded();
-        StartCoroutine(DelayShowTutorial());
+        Debug.Log("check sceneSignal.SceneLoaded *********************");
+        // StartCoroutine(DelayShowTutorial());
         
     }
 

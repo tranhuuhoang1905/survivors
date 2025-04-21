@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         {
             sceneSignal.OnSceneLoaded.AddListener(RefreshUI);
         }
-        character = FindObjectOfType<Character>();
         
     }
 
@@ -99,6 +98,8 @@ public class GameManager : MonoBehaviour
     public void RefreshUI()
     {
         ScoreEvent.RaiseScoreUpdated(score);
+        
+        character = FindObjectOfType<Character>();
         if (character != null)
         {
             int exp = character.exp;

@@ -38,10 +38,11 @@ public class UIManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
         blinkEffect = NotifyNextWare.GetComponent<BlinkEffect>();
     }
     void Start(){
+        
         HideAllPopup();
         RestartNextWareCountdown();
         
